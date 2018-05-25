@@ -390,6 +390,3 @@ Temporary Items
 docker-compose.yml
 .env
 dist
-project/package-lock.json
-project/package.json
-package-lock.json
