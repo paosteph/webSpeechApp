@@ -1,9 +1,11 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {NivelEntity} from "../nivel/nivel.entity";
+import {Practica} from "./practica.entity";
+import {Palabra} from "../nivel/palabra.entity";
 
 
 @Entity('usuario')
 export class UsuarioEntity {
-
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -19,9 +21,12 @@ export class UsuarioEntity {
     @Column('text')
     url_foto: string;
 
-    @Column({length: 500})
+    @Column({length: 30})
     contrasena: string;
 
+    @OneToMany(type => Practica, practica => practica.usuario)
+    practica: Practica[];
 
-
+    @OneToMany(type => Palabra, palabra => palabra.usuario)
+    palabra: Palabra[];
 }
