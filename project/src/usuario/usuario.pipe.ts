@@ -1,6 +1,7 @@
 import {ArgumentMetadata, Injectable, PipeTransform} from "@nestjs/common";
 import * as Joi from 'joi';
-import {Usuario_Registro_Schema} from "./usuario.schema";
+
+import {PeticionInvalidaException} from "../exceptions/peticion-invalida.exception";
 
 @Injectable()
 export class UsuarioPipe implements PipeTransform{
@@ -19,6 +20,13 @@ export class UsuarioPipe implements PipeTransform{
             valorEnBrutoDelRequest,
             this._schema
         );
+        if(error){
+            throw new PeticionInvalidaException(
+                'Peticion invalida',
+                error,
+                4
+            );
+        }
 
         return valorEnBrutoDelRequest;
     }
