@@ -18,5 +18,4 @@ export class Palabra{
     @ManyToOne(type => UsuarioEntity, usuario=> usuario.palabra)
     usuario: UsuarioEntity;
 
-
 }
