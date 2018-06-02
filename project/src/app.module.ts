@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {UsuarioController} from "./usuario.controller";
+import {NivelController} from "./nivel.controller";
+
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -15,7 +17,8 @@ import {UsuarioController} from "./usuario.controller";
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
   }),],
-  controllers: [AppController, UsuarioController],
+
+  controllers: [AppController,NivelController,UsuarioController],
   providers: [AppService],
 })
 export class AppModule {}
