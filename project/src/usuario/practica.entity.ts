@@ -10,8 +10,9 @@ export class Practica{
     @Column('date')
     fecha: Date;
 
-    @Column()
+    @Column('porcentajeExito')
     intento: number;
+
 
     @ManyToOne(type => UsuarioEntity, usuario => usuario.practica)
     usuario: UsuarioEntity;
