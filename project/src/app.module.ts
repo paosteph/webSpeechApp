@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import {NivelController} from "./nivel.controller";
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -14,7 +15,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
   }),],
-  controllers: [AppController],
+  controllers: [AppController,NivelController],
   providers: [AppService],
 })
 export class AppModule {}

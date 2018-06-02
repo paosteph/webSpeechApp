@@ -1,7 +1,7 @@
 import {Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Practica} from "../usuario/practica.entity";
 import {Frase} from "./frase.entity";
-import {Administrador} from "../usuario/administrador.entity";
+import {Administrador} from "../Administrador/administrador.entity";
 
 @Entity('nivel')
 export class NivelEntity{
