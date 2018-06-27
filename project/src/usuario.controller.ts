@@ -21,8 +21,9 @@ export class UsuarioController {
         const credenciales=nickname && password;
         if(credenciales){
             if(nickname=='n'&&password=='p'){
+                const payload={user:'n'};
                 const parametros={nombre:'cookieSesion',
-                    valor:this._jwtService.emitirToken('n')}
+                    valor:this._jwtService.emitirToken(payload)};
 
                 response.cookie(parametros.nombre,parametros.valor);
                 response.send("logueado correctamente");

@@ -1,8 +1,9 @@
-import {CanActivate, ExecutionContext} from "@nestjs/common";
+import {CanActivate, ExecutionContext, Injectable} from "@nestjs/common";
 import {Observable} from "rxjs/index";
 import {Reflector} from "@nestjs/core";
 import {JwtService} from "./jwt.service";
 
+@Injectable()
 export class UsuarioGuard implements CanActivate{
     //recibir reflector
     constructor(
@@ -16,11 +17,6 @@ export class UsuarioGuard implements CanActivate{
         Observable<boolean> {
         const request= context.switchToHttp().getRequest();
 
-
-        console.log('Request', request);
-        console.log('cab',request.headers);
-
-        // obtengo reflector
         const reflectorNecesitaValidacion= this.reflector
             .get(
                 'necesitaValidacion',
