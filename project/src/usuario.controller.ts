@@ -40,7 +40,7 @@ export class UsuarioController {
     cerrarSesion(@Res() response){
 
         const parametros={nombre:'cookieSesion',
-            valor:''}
+            valor:'nada'}
 
         response.cookie(parametros.nombre,parametros.valor);
         response.send("cerro sesion");
