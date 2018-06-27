@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {UsuarioController} from "./usuario.controller";
 import {NivelController} from "./nivel.controller";
+import {JwtService} from "./autentificacion/jwt.service";
 
 
 @Module({
@@ -19,6 +20,6 @@ import {NivelController} from "./nivel.controller";
   }),],
 
   controllers: [AppController,NivelController,UsuarioController],
-  providers: [AppService],
+  providers: [AppService,JwtService],
 })
 export class AppModule {}

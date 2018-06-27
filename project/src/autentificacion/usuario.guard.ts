@@ -21,23 +21,11 @@ export class UsuarioGuard implements CanActivate{
         console.log('cab',request.headers);
 
         // obtengo reflector
-        const reflectorNombreDato= this.reflector
-            .get(
-                'nombreDato',
-                context.getHandler()
-            );
-
         const reflectorNecesitaValidacion= this.reflector
             .get(
                 'necesitaValidacion',
                 context.getHandler()
             );
-        console.log('reflectorNombreDato',
-            reflectorNombreDato);
-
-        console.log('reflectorNombreDato',
-            reflectorNombreDato);
-
 
         if (reflectorNecesitaValidacion){
 
