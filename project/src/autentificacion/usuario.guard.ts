@@ -25,7 +25,7 @@ export class UsuarioGuard implements CanActivate{
 
         if (reflectorNecesitaValidacion){
 
-            const existeCookie=request.cookie["cookieSesion"];
+            const existeCookie=request.cookies["cookieSesion"];
             if (existeCookie){
                 return this.jwtService.verificarToken(existeCookie);
             }else{
