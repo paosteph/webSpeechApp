@@ -21,6 +21,17 @@ import { ItemMenuComponent } from './Componentes/item-menu/item-menu.component';
 import { TituloComponent } from './Componentes/titulo/titulo.component';
 import { SubtituloComponent } from './Componentes/subtitulo/subtitulo.component';
 import { BotonComponent } from './Componentes/boton/boton.component';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatFormFieldModule, MatGridListModule, MatIconModule,
+  MatInputModule, MatMenu, MatMenuContent, MatMenuItem, MatMenuModule, MatMenuTrigger, MatPaginatorModule,
+  MatToolbarModule
+} from "@angular/material";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -46,7 +57,20 @@ import { BotonComponent } from './Componentes/boton/boton.component';
     BotonComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,MatButtonModule, MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    MatIconModule,
+    HttpClientModule,
+    FormsModule,
+    MatButtonModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
