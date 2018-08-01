@@ -3,6 +3,8 @@ import {UsuarioPipe} from "./usuario/usuario.pipe";
 import {Frase_Schema} from "./nivel/frase.schema";
 import {JwtService} from "./autentificacion/jwt.service";
 import {UsuarioGuard} from "./autentificacion/usuario.guard";
+import {UsuarioService} from "./usuario/usuario.service";
+import {UsuarioEntity} from "./usuario/usuario.entity";
 
 @Controller('Usuario')
 @UseGuards(UsuarioGuard)
@@ -14,6 +16,7 @@ export class UsuarioController {
     mostrarFrase(@Body(new UsuarioPipe(Frase_Schema)) frase){
         return frase;
     }
+
 
     @Post('logear')
     @ReflectMetadata('necesitaValidacion',false)
