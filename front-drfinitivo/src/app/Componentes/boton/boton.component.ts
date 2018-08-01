@@ -6,8 +6,8 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./boton.component.css']
 })
 export class BotonComponent implements OnInit {
-@Input()
-nombreBoton:string;
+  @Input()
+  nombreBoton:string;
 
   constructor() { }
 
