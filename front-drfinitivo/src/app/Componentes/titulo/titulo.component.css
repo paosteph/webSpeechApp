@@ -1,0 +1,12 @@
+.titulo{
+  background-color: gainsboro;
+  color: mediumblue;
+  padding: 15px;
+  border-radius: 20px;
+  text-align: center;
+}
+.titulo:hover{
+  color: white;
+  border-color: royalblue;
+  text-effect: engrave;
+}

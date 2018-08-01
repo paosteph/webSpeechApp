@@ -1,3 +1,63 @@
-<p>
-  perfil works!
-</p>
+<br>
+<app-titulo
+  [titulo]="titulo"
+></app-titulo>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card foto">
+      <img [src]="url_foto+'/100px180/'" class="card-img-bottom  rounded" alt="foto usuario">
+    </div>
+  </div>
+  <div class="col-sm-8 nombrePerfil">
+    <h2>{{nombre | uppercase}}</h2>
+  </div>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-sm-4">
+    <app-subtitulo
+      [sutitulo]="subtRecord"
+    ></app-subtitulo>
+  </div>
+  <div class="col-sm-2"></div>
+  <div class="col-sm-4">
+    <app-subtitulo
+      [sutitulo]="subtProgreso"
+    ></app-subtitulo>
+  </div>
+</div>
+<br>
+<div class="row" style="padding-top: 25px">
+  <div class="col-md-5">
+    <table class="table table-hover">
+      <tbody>
+      <tr>
+        <th>Prácticas Hechas</th>
+        <td>{{practicasTotal}}</td>
+      </tr>
+      <tr>
+        <th>Porcentaje Éxito</th>
+        <td>{{porcentajeExito}}</td>
+      </tr>
+      <tr>
+        <th>Prácticas exitosas</th>
+        <td>{{practicasExitosas}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-1"></div>
+  <div class="col-sm-5">
+    <img src="assets/img/improve.jpg" class="img-fluid" alt="">
+  </div>
+</div>
+<br>
+<div class="row">
+  <app-boton
+    [nombreBoton]="botonResumen"
+  ></app-boton>
+</div>
+
+
+
