@@ -1,3 +1,14 @@
-<p>
-  perfil works!
-</p>
+<br>
+<app-titulo
+  [titulo]="titulo"
+></app-titulo>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card foto">
+      <img [src]="url_foto+'/100px180/'" class="card-img-bottom  rounded" alt="foto usuario">
+    </div>
+  </div>
+  <div class="col-sm-8 nombrePerfil">
+    <h2>{{nombre | uppercase}}</h2>
+  </div>
+</div>
