@@ -70,6 +70,7 @@ import {FormsModule} from "@angular/forms";
     HttpClientModule,
     FormsModule,
     MatButtonModule,
+    MatIconModule,
 
   ],
   providers: [],
