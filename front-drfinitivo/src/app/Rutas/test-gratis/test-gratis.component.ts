@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestGratisComponent implements OnInit {
 
+  private titulo;
+  private subtResultado;
+  private grabando: boolean;
+  private botonRegistrase;
+
   constructor() { }
 
   ngOnInit() {
+    this.titulo = "Test gratis";
+    this.subtResultado = "Resultado";
+    this.botonRegistrase = "Registrarse";
+    this.grabando = false;
   }
 
 }

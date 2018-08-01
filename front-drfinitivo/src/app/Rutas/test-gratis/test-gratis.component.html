@@ -1,3 +1,49 @@
-<p>
-  test-gratis works!
-</p>
+<br>
+<app-titulo
+ [titulo]="titulo"
+></app-titulo>
+<br>
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8 card mensaje">
+    <h6>Hola, te invitamos a probar nuestra aplicación.</h6>
+    <h6>Presiona Grabar habla en inglés y presiona Parar. En Resultado observa si pronunciaste correstcamente</h6>
+  </div>
+  <div class="col-sm-2"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-3 ">
+    <button type="button" class="btn btn-outline-success btn-block boton" *ngIf="!grabando; else parar">Grabar</button>
+    <ng-template #parar>
+      <button type="button" class="btn btn-outline-danger btn-block boton">Parar</button>
+    </ng-template>
+  </div>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-sm-4">
+    <app-subtitulo
+    [sutitulo]="subtResultado"
+    ></app-subtitulo>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-8 card">
+    <div class="card-body">
+      <h5 class="card-title">What ..fuck..</h5>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-8" style="text-align: right;">
+    <h6 class="mytext2">Regístrate y aprovecha más funcionalidades</h6>
+  </div>
+  <div class="col-sm-4">
+    <app-boton
+      [nombreBoton]="botonRegistrase"
+    ></app-boton>
+  </div>
+</div>
