@@ -14,10 +14,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-
+  private botonRegistrase;
   constructor() { }
 
   ngOnInit() {
+    this.botonRegistrase = "Registrarse";
   }
   hide = true;
   emailFormControl = new FormControl('', [

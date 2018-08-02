@@ -8,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class ItemMenuComponent implements OnInit {
 
   constructor() { }
+  private botonIngresar;
+  private titulo;
 
   ngOnInit() {
+    this.botonIngresar = "Comenzar";
+    this.titulo="Nivel";
   }
 
 }
