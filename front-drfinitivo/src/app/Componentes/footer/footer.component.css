@@ -1,0 +1,23 @@
+.pie{
+  /*background-image: url("http://contactcentremonthly.co.uk/wp-content/uploads/2017/05/auMina-2.5-470x330.png");*/
+  background-color: #002f5f;
+}
+
+.texto{
+  color: whitesmoke;
+  font-size: medium;
+  padding: 25px;
+}
+
+.alinearCentro{
+  text-align: center;
+}
+
+.alinearDerecha{
+  text-align: right;
+}
+
+.imagen:hover{
+  opacity: 0.7;
+  /*transform: translate(0%, -30px)*/
+}
