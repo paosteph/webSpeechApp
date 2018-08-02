@@ -1,0 +1,31 @@
+.color{
+  border-color: plum;
+  border-width: 2px;
+  font-size: larger;
+  background-color: whitesmoke;
+}
+
+.palabra{
+  padding: 10px;
+  font-weight: lighter;
+  border-color: darkorchid;
+
+}
+
+.palabra:hover{
+  background-color: plum;
+}
+
+.resultadoBien{
+  color: darkgreen;
+  letter-spacing: 5px;
+  font-weight: bold;
+  font-family: "Berlin Sans FB";
+}
+
+.resultadoMal{
+  color: crimson;
+  letter-spacing: 5px;
+  font-weight: bold;
+  font-family: "Berlin Sans FB Demi";
+}

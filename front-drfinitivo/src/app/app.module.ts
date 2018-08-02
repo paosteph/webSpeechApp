@@ -32,6 +32,7 @@ import {
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import { FooterComponent } from './Componentes/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import {FormsModule} from "@angular/forms";
     ItemMenuComponent,
     TituloComponent,
     SubtituloComponent,
-    BotonComponent
+    BotonComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,MatButtonModule, MatCheckboxModule,

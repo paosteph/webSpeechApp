@@ -14,9 +14,11 @@
 <br>
 <div class="row">
   <div class="col-sm-3 ">
-    <button type="button" class="btn btn-outline-success btn-block boton" *ngIf="!grabando; else parar">Grabar</button>
+    <button type="button" class="btn btn-outline-success btn-block boton"
+            *ngIf="!grabando; else parar" (click)="empezarGrabacion()">Grabar</button>
     <ng-template #parar>
-      <button type="button" class="btn btn-outline-danger btn-block boton">Parar</button>
+      <button type="button" class="btn btn-outline-danger btn-block boton"
+              (click)="finalizarGrabacion()">Parar</button>
     </ng-template>
   </div>
 </div>
@@ -29,14 +31,12 @@
   </div>
 </div>
 <br>
-<div class="row">
-  <div class="col-sm-8 card">
-    <div class="card-body">
-      <h5 class="card-title">What ..fuck..</h5>
-    </div>
-  </div>
-</div>
-<br>
+<app-practica *ngIf="finGrabacion"
+              [loQueDijo]="loQueDijo"
+              [loCorrecto]="loCorrecto"
+              [resultado]="resultado"
+></app-practica>
+<br><br><br>
 <div class="row">
   <div class="col-sm-8" style="text-align: right;">
     <h6 class="mytext2">Regístrate y aprovecha más funcionalidades</h6>
@@ -47,3 +47,4 @@
     ></app-boton>
   </div>
 </div>
+<br><br>

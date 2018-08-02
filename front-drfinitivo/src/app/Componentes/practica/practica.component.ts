@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-practica',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PracticaComponent implements OnInit {
 
+  @Input() resultado: boolean;
+  @Input() loQueDijo;
+  @Input() loCorrecto;
+
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

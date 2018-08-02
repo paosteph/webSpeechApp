@@ -1,3 +1,27 @@
-<p>
-  practica works!
-</p>
+<div class="row" style="padding-top: 20px">
+  <div class="col-md-7 card color">
+    <table class="table table-borderless ">
+      <tbody>
+      <tr>
+        <th>Lo que pronunciaste</th>
+        <td>
+          <div class="card border-white palabra">{{loQueDijo}}</div>
+        </td>
+      </tr>
+      <tr>
+        <th>Lo correcto</th>
+        <td>
+          <div class="card border-white palabra">{{loCorrecto}}</div>
+        </td>
+      </tr>
+      <tr>
+        <th>Resultado</th>
+        <td class="resultadoBien" *ngIf="resultado; else incorrectBlock">MUY BIEN</td>
+        <ng-template #incorrectBlock>
+          <td class="resultadoMal">MUY MAL !</td>
+        </ng-template>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

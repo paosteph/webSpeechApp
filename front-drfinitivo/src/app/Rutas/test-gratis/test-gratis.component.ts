@@ -10,6 +10,8 @@ export class TestGratisComponent implements OnInit {
   private titulo;
   private subtResultado;
   private grabando: boolean;
+  private finGrabacion: boolean;
+  private oculto: boolean;
   private botonRegistrase;
 
   constructor() { }
@@ -18,6 +20,19 @@ export class TestGratisComponent implements OnInit {
     this.titulo = "Test gratis";
     this.subtResultado = "Resultado";
     this.botonRegistrase = "Registrarse";
+    this.grabando = false;
+    this.finGrabacion = false;
+    this.oculto = false;
+  }
+
+  empezarGrabacion(){
+    this.grabando = true;
+    this.finGrabacion = false;
+  }
+
+  finalizarGrabacion(){
+    this.finGrabacion = true;
+    this.oculto = true;
     this.grabando = false;
   }
 
