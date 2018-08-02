@@ -33,6 +33,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { FooterComponent } from './Componentes/footer/footer.component';
+import { LoginComponent } from './Rutas/login/login.component';
+import {CookieService} from "ngx-cookie-service";
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { FooterComponent } from './Componentes/footer/footer.component';
     TituloComponent,
     SubtituloComponent,
     BotonComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,MatButtonModule, MatCheckboxModule,
@@ -75,7 +78,7 @@ import { FooterComponent } from './Componentes/footer/footer.component';
     MatIconModule,
 
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
