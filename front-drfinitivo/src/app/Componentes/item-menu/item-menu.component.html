@@ -1,9 +1,12 @@
 
 <div style="text-align: center">
 <mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title><h2>Nivel{{nombreNivel}}</h2></mat-card-title>
-  </mat-card-header>
+
+   <app-titulo
+      [titulo]="titulo"
+    ></app-titulo>
+  <br>
+  <br>
   <img mat-card-image src="assets/img/SALUDOS.jpg" alt="Photo of a Shiba Inu">
   <mat-card-content>
     <p>
@@ -13,7 +16,7 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-   <app-boton></app-boton>
+   <app-boton  [nombreBoton]="botonIngresar"></app-boton>
   </mat-card-actions>
 </mat-card>
 </div>

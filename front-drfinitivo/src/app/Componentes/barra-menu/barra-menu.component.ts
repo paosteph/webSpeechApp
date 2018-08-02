@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class BarraMenuComponent implements OnInit {
 
   constructor() { }
-
+private botonMenu;
   ngOnInit() {
+    this.botonMenu="Menu";
   }
 
 }
