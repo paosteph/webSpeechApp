@@ -9,8 +9,10 @@ export class BarraMenuComponent implements OnInit {
 
   constructor() { }
 private botonMenu;
+  private menuInicio;
   ngOnInit() {
     this.botonMenu="Menu";
+    this.menuInicio="Menu de Practicas";
   }
 
 }

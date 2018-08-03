@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Res, Body, UseGuards, ReflectMetadata} from '@nestjs/common';
+import {Controller, Get, Post, Res, Body, UseGuards, ReflectMetadata, Req} from '@nestjs/common';
 import {UsuarioPipe} from "./usuario/usuario.pipe";
 import {Frase_Schema} from "./nivel/frase.schema";
 import {JwtService} from "./autentificacion/jwt.service";
@@ -9,7 +9,7 @@ import {UsuarioEntity} from "./usuario/usuario.entity";
 @Controller('Usuario')
 @UseGuards(UsuarioGuard)
 export class UsuarioController {
-    constructor(private _jwtService:JwtService){}
+    constructor(private _jwtService:JwtService,private usuarioService:UsuarioService){}
 
     @Post('frase')
     @ReflectMetadata('necesitaValidacion',true)
@@ -48,6 +48,29 @@ export class UsuarioController {
         response.cookie(parametros.nombre,parametros.valor);
         response.send("cerro sesion");
 
+    }
+
+    @Post('crear')
+    async crearUno(
+        @Body('nombre') nombre, @Body('nick') nick, @Body('correo') correo,
+        @Body('contrasena') contrasena, @Body('url_foto') url_foto
+    ){
+        return this.usuarioService.crearUno(nombre, nick, correo, contrasena, url_foto);
+    }
+
+    @Post()
+    async crearUsersFijos() {
+        const usuarios = this.usuarioService.crearUser();
+        return usuarios;
+    }
+
+    @Get()
+    async listarTodos(
+        @Res() response,
+        @Req() request,
+    ) {
+        const usuarios = await this.usuarioService.findAll();
+        return response.send(usuarios);
     }
 
 }

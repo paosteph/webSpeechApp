@@ -1,40 +1,56 @@
 import {Injectable} from "@nestjs/common";
+import {Repository} from "typeorm";
 import {UsuarioEntity} from "./usuario.entity";
 import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
+
 
 @Injectable()
 export class UsuarioService{
-    ArregloUsuarios=[
-        {'id':1,'nombre':'Graciela','nick':'graci','correo':'chelinesmoreno@hotmail.com','url_foto':'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwiF16Sb5cncAhUquVkKHdThDW8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.istockphoto.com%2Fes%2Ffotograf%25C3%25ADas-de-stock&psig=AOvVaw0xBb5NJidnh0xV-x7mWzuq&ust=1533142011607697','contrasena':'graciela'},
-        {'id':2,'nombre':'Graciela1','nick':'graci1','correo':'chelinesmoreno@hotmail.com','url_foto':'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwiF16Sb5cncAhUquVkKHdThDW8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.istockphoto.com%2Fes%2Ffotograf%25C3%25ADas-de-stock&psig=AOvVaw0xBb5NJidnh0xV-x7mWzuq&ust=1533142011607697','contrasena':'graciela'},
-        {'id':3,'nombre':'Graciela2','nick':'graci2','correo':'chelinesmoreno@hotmail.com','url_foto':'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwiF16Sb5cncAhUquVkKHdThDW8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.istockphoto.com%2Fes%2Ffotograf%25C3%25ADas-de-stock&psig=AOvVaw0xBb5NJidnh0xV-x7mWzuq&ust=1533142011607697','contrasena':'graciela'},
-        {'id':4,'nombre':'Graciela3','nick':'graci3','correo':'chelinesmoreno@hotmail.com','url_foto':'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwiF16Sb5cncAhUquVkKHdThDW8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.istockphoto.com%2Fes%2Ffotograf%25C3%25ADas-de-stock&psig=AOvVaw0xBb5NJidnh0xV-x7mWzuq&ust=1533142011607697','contrasena':'graciela'}
+
+
+    ArregloUsuarios= [
+        {'id': 2, 'nombre': 'Maria', 'nick': 'Maria1', 'correo': 'Maria@gmail.com','contrasena': 'Maria','url_foto': 'https://www.okchicas.com/wp-content/uploads/2018/01/Poses-para-una-buena-foto-de-perfil-8-1.jpg'},
+        {'id': 3, 'nombre': 'Maria', 'nick': 'Maria2', 'correo': 'Maria@gmail.com','contrasena': 'Maria','url_foto': 'https://www.okchicas.com/wp-content/uploads/2018/01/Poses-para-una-buena-foto-de-perfil-5-1.jpg'},
+        {'id': 4,'nombre': 'Maria', 'nick': 'Maria3', 'correo': 'Maria@gmail.com','contrasena': 'Maria', 'url_foto': 'https://www.okchicas.com/wp-content/uploads/2018/01/Poses-para-una-buena-foto-de-perfil-4-1.jpg'},
+        {'id': 5,'nombre': 'Maria', 'nick': 'Maria4', 'correo': 'Maria@gmail.com','contrasena': 'Maria', 'url_foto': 'https://static.ellahoy.es/r/845X0/www.ellahoy.es/img/perfil-del-hombre-infiel.jpg'},
+        {'id': 6, 'nombre': 'Maria', 'nick': 'Maria5', 'correo': 'Maria@gmail.com','contrasena': 'Maria', 'url_foto': 'https://static.ellahoy.es/845x500/www/ellahoy/es/img/detalles-de-infieles4.jpg'},
+        {'id': 7,'nombre': 'Maria', 'nick': 'Maria6', 'correo': 'Maria@gmail.com','contrasena': 'Maria', 'url_foto': 'http://arqa.com/comunidad/wp-content/uploads/sites/3/avatars/120644/59194d4444e8a-bpfull.jpg'},
+        {'id': 8, 'nombre': 'Maria', 'nick': 'Maria7', 'correo': 'Maria@gmail.com','contrasena': 'Maria', 'url_foto': 'https://scontent.fuio13-1.fna.fbcdn.net/v/t1.0-9/26219505_1673267116028362_3405147687524622913_n.jpg?_nc_cat=0&_nc_eui2=AeEAh7ECt0X7OXlMEfz_sny3VDu4kZdy5Y7pGX7H0Y2F5UsvA__zeAp2TYV7Y1JgRjon8ftc-WvEGShRlD3rmJ5d-2-a5tqwx-fYjLZlB1z9Lw&oh=cc7fc9ee13eb81868130bb8629c2443b&oe=5BEB5985'}
+
     ];
-    constructor(@InjectRepository(UsuarioEntity)
-                private readonly userRepository: Repository<UsuarioEntity>) {
-
-    }
-
-
+    constructor(
+        @InjectRepository(UsuarioEntity)
+        private readonly _usuarioRepositorio: Repository<UsuarioEntity>,
+        //private _actorService: ActorService,
+    ){}
     crearUser() {
         for(var usuarios in this.ArregloUsuarios) {
             const usuario = new UsuarioEntity();
             usuario.id = this.ArregloUsuarios[usuarios].id;
             usuario.nombre = this.ArregloUsuarios[usuarios].nombre;
             usuario.nick = this.ArregloUsuarios[usuarios].nick;
-            usuario.correo=this.ArregloUsuarios[usuarios].correo;
+            usuario.correo= this.ArregloUsuarios[usuarios].correo;
+            usuario.contrasena=this.ArregloUsuarios[usuarios].contrasena;
             usuario.url_foto = this.ArregloUsuarios[usuarios].url_foto;
-            usuario.contrasena= this.ArregloUsuarios[usuarios].contrasena;
-            this.userRepository.save(usuario);
+            this._usuarioRepositorio.save(usuario);
         }
-        return this.userRepository.find();
+        return this._usuarioRepositorio.find();
+    }
+    async crearUno(nombre, nick, correo, password, url_foto){
+        const usuario = new UsuarioEntity();
+        usuario.nombre = nombre;
+        usuario.nick = nick;
+        usuario.correo = correo;
+        usuario.contrasena= password;
+        usuario.url_foto = url_foto;
+
+        return await this._usuarioRepositorio.save(usuario);
     }
 
-    async obtenerUserPorNombreUser(nombreArgumento) {
-        return await this.userRepository.
-        createQueryBuilder("usuario").where("usuario.nombre = :nombre", { nombre: nombreArgumento }).getOne();
+    async findAll(): Promise<UsuarioEntity[]> {
+        return await this._usuarioRepositorio.find();
     }
+
 
 
 }
