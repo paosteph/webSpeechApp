@@ -30,7 +30,8 @@
   </div>
   <div class="col-sm-1"></div>
   <div class="col-sm-3">
-    <h1 class="animated fadeInDownBig">Login</h1>
+    <app-subtitulo [sutitulo]="tituloLogin"></app-subtitulo>
+
     <form >
       <div class="form-group">
         <label for="exampleDropdownFormEmail2">Email address</label>
@@ -46,7 +47,7 @@
           Remember me
         </label>
       </div>
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <app-boton [nombreBoton]="nombreIngresar"> </app-boton>
     </form>
   </div>
 </div>

@@ -8,16 +8,20 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class LoginComponent implements OnInit {
 
-  private nombreBoton="";
+  private nombreIngresar;
+  private tituloLogin;
   constructor(private cookieService: CookieService) { }
 
   ngOnInit() {
     this.validarUsuario();
+    this.nombreIngresar="Ingresar";
+    this.tituloLogin="Login";
   }
 
   validarUsuario(){
     //guardo coookie
     this.cookieService.set( 'usuarioId', "5" ); //cambiar con id servicio
   }
+
 
 }
