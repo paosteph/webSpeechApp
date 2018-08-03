@@ -35,6 +35,7 @@ import {FormsModule} from "@angular/forms";
 import { FooterComponent } from './Componentes/footer/footer.component';
 import { LoginComponent } from './Rutas/login/login.component';
 import {CookieService} from "ngx-cookie-service";
+import { FraseComponent } from './Componentes/frase/frase.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {CookieService} from "ngx-cookie-service";
     SubtituloComponent,
     BotonComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    FraseComponent
   ],
   imports: [
     BrowserModule,MatButtonModule, MatCheckboxModule,

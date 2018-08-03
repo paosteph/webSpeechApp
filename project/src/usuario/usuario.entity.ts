@@ -25,8 +25,8 @@ export class UsuarioEntity {
     contrasena: string;
 
     @OneToMany(type => Practica, practica => practica.usuario)
-    practica: Practica[];
+    practicas: Practica[];
 
     @OneToMany(type => Palabra, palabra => palabra.usuario)
-    palabra: Palabra[];
+    palabras: Palabra[];
 }

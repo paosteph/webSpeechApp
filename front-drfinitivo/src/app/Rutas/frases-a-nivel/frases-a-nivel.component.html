@@ -12,18 +12,31 @@
 <div class="row">
   <div class="col-sm-5">
     <h3>Frases Nivel</h3>
-    <form class="form-check-inline col-sm-12">
-      <input class="form-control mr-sm-3" type="text" placeholder="Nueva Frase"
+    <form class="form-check-inline col-sm-12"
+          (ngSubmit)="crearFrase(formulario)"
+          #formulario="ngForm">
+      <input class="form-control mr-sm-3" type="text"
+             placeholder="Nueva Frase"
+             [(ngModel)]="nuevaFrase"
              name="nuevaFrase">
       <app-boton type="submit" nombreBoton="Añadir"></app-boton>
     </form>
-    <div class=" col-sm-12 card">
-      <p>Where</p>
-      <p>Where</p>
+    <div class="col-sm-12 card" *ngFor="let frase of frasesNivel">
+      <p class="frase2" *ngIf="!frase.seleccionado; else elseBlock"
+         (click)="seleccionarFrase(frase)">
+        {{frase.texto}}</p>
+      <ng-template #elseBlock>
+        <p class="frase" (click)="seleccionarFrase(frase)">{{frase.texto}}</p>
+      </ng-template>
     </div>
     <br>
-    <div>
-      <app-boton nombreBoton="Quitar Frases Seleccionadas"></app-boton>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="8">
+        <app-boton nombreBoton="Quitar Frases Seleccionadas"
+                   (darClic)="quitarCampoSeleccionado()">
+        </app-boton>
+      </div>
     </div>
   </div>
 
@@ -32,7 +45,9 @@
     <div class="col-sm-2"></div>
     <div class="col-sm-10">
       <br><br><br><br>
-      <app-boton  nombreBoton="< Copiar "></app-boton>
+      <app-boton  nombreBoton="< Copiar "
+      (darClic)="anadirCampoSeleccionado()">
+      </app-boton>
     </div>
     <br>
 
@@ -40,13 +55,19 @@
   </div>
   <div class="col-sm-5">
     <h3>Todas las frases</h3>
-    <form class="form-check-inline col-sm-12">
-      <input class="form-control mr-sm-3" type="search" placeholder="Buscar Frase" size="100" aria-label="Buscar Frase"
-             name="palabraBusqueda">
+    <form class="form-check-inline col-sm-12"
+          #formulario2="ngForm">
+      <input class="form-control mr-sm-3" type="search" placeholder="Buscar Frase" size="100"
+             [(ngModel)]="palabraBusqueda"
+             aria-label="Buscar Frase"
+             name="palabraBusqueda"
+             (keypress)="buscarFrase(formulario2)">
     </form>
-    <div class="col-sm-12 card">
-      <p>Who</p>
-      <p>Why</p>
+    <div class="col-sm-12 card" *ngFor="let frase of frasesOtrasMostradas">
+      <p class="frase2" *ngIf="!frase.seleccionado; else elseBlock" (click)="seleccionarFrase(frase)">{{frase.texto}}</p>
+      <ng-template #elseBlock>
+        <p class="frase" (click)="seleccionarFrase(frase)">{{frase.texto}}</p>
+      </ng-template>
     </div>
   </div>
 </div>
@@ -54,7 +75,8 @@
 <div class="row">
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
-    <app-boton nombreBoton="Terminar y Salir"></app-boton>
+    <app-boton nombreBoton="Terminar y Salir" routerLink=""></app-boton>
   </div>
   <div class="col-sm-4"></div>
 </div>
+<br>

@@ -13,10 +13,10 @@ export class NivelEntity{
     nombre: string;
 
     @OneToMany(type => Practica, practica => practica.nivel)
-    practica: Practica[];
+    practicas: Practica[];
 
     @ManyToMany(type => Frase, frase => frase.nivel)
-    frase: Frase[];
+    frases: Frase[];
 
     @ManyToOne(type=>Administrador, administrador=>administrador.niveles)
     administrador: Administrador;

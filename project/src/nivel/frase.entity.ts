@@ -9,7 +9,7 @@ export class Frase{
     @Column('text')
     texto: string;
 
-    @ManyToMany(type => NivelEntity, nivel => nivel.frase)
+    @ManyToMany(type => NivelEntity, nivel => nivel.frases)
     @JoinTable()
     nivel: NivelEntity[];
 }

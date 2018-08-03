@@ -15,7 +15,7 @@ export class Palabra{
     @Column("int")
     correcto: number;
 
-    @ManyToOne(type => UsuarioEntity, usuario=> usuario.palabra)
+    @ManyToOne(type => UsuarioEntity, usuario=> usuario.palabras)
     usuario: UsuarioEntity;
 
 }

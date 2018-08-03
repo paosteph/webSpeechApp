@@ -11,7 +11,7 @@ import {UsuarioEntity} from "./usuario/usuario.entity";
 export class UsuarioController {
     constructor(private _jwtService:JwtService){}
 
-    @Post('frase')
+    @Post('frases')
     @ReflectMetadata('necesitaValidacion',true)
     mostrarFrase(@Body(new UsuarioPipe(Frase_Schema)) frase){
         return frase;

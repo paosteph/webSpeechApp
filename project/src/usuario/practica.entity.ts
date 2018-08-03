@@ -13,9 +13,9 @@ export class Practica{
     @Column()
     porcentajeExito: number;
 
-    @ManyToOne(type => UsuarioEntity, usuario => usuario.practica)
+    @ManyToOne(type => UsuarioEntity, usuario => usuario.practicas)
     usuario: UsuarioEntity;
 
-    @ManyToOne(type => NivelEntity, nivel => nivel.practica)
+    @ManyToOne(type => NivelEntity, nivel => nivel.practicas)
     nivel: NivelEntity;
 }

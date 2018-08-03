@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-boton',
@@ -8,6 +8,14 @@ import {Component, Input, OnInit} from '@angular/core';
 export class BotonComponent implements OnInit {
   @Input()
   nombreBoton:string;
+
+  @Output()
+  darClic= new EventEmitter;
+
+  ejecutarEvento() {
+    console.log('dioclic');
+    this.darClic.emit();
+  }
 
   constructor() { }
 

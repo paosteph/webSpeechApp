@@ -17,7 +17,7 @@ export class TestComponent implements OnInit {
   private oculto: boolean;
   private botonReintentar;
   private botonSiguiente;
-  //practica
+  //practicas
   private loQueDijo;
   private loCorrecto;
   private resultado: boolean;
@@ -33,9 +33,9 @@ export class TestComponent implements OnInit {
     this.oculto = false;
     this.palabraFrase = "Probando";
     this.botonReintentar = "Reintentar";
-    this.botonSiguiente = "Siguiente palabra";
+    this.botonSiguiente = "Siguiente palabras";
 
-    //practica
+    //practicas
     this.loQueDijo = "Helli";
     this.loCorrecto = "Hellolkdsnflasknf alksnfasknfalfkn adknfaldnflakdnfaksnfak snflakfnlasknflak snfasnfafasf";
     this.resultado = false;
