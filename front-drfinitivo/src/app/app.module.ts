@@ -36,6 +36,7 @@ import { FooterComponent } from './Componentes/footer/footer.component';
 import { LoginComponent } from './Rutas/login/login.component';
 import {CookieService} from "ngx-cookie-service";
 import { FraseComponent } from './Componentes/frase/frase.component';
+import {UsuarioService} from "../Servicio/usuario.service";
 
 @NgModule({
   declarations: [
@@ -80,7 +81,7 @@ import { FraseComponent } from './Componentes/frase/frase.component';
     MatIconModule,
 
   ],
-  providers: [CookieService],
+  providers: [CookieService,UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

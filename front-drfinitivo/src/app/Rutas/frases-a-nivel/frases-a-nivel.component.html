@@ -19,14 +19,14 @@
              placeholder="Nueva Frase"
              [(ngModel)]="nuevaFrase"
              name="nuevaFrase">
-      <app-boton type="submit" nombreBoton="Añadir"></app-boton>
+      <app-boton type="submit" (darClic)="crearFrase(formulario)" nombreBoton="Añadir"></app-boton>
     </form>
-    <div class="col-sm-12 card" *ngFor="let frase of frasesNivel">
+    <div class="col-sm-12 card" *ngFor="let frase of frasesNivel;let i=index;">
       <p class="frase2" *ngIf="!frase.seleccionado; else elseBlock"
-         (click)="seleccionarFrase(frase)">
+         (click)="seleccionarFraseNivel(i)">
         {{frase.texto}}</p>
       <ng-template #elseBlock>
-        <p class="frase" (click)="seleccionarFrase(frase)">{{frase.texto}}</p>
+        <p class="frase" (click)="seleccionarFraseNivel(i)">{{frase.texto}}</p>
       </ng-template>
     </div>
     <br>
@@ -63,10 +63,10 @@
              name="palabraBusqueda"
              (keypress)="buscarFrase(formulario2)">
     </form>
-    <div class="col-sm-12 card" *ngFor="let frase of frasesOtrasMostradas">
-      <p class="frase2" *ngIf="!frase.seleccionado; else elseBlock" (click)="seleccionarFrase(frase)">{{frase.texto}}</p>
+    <div class="col-sm-12 card" *ngFor="let frase of frasesOtrasMostradas;let i=index;">
+      <p class="frase2" *ngIf="!frase.seleccionado; else elseBlock" (click)="seleccionarFraseOtras(i)">{{frase.texto}}</p>
       <ng-template #elseBlock>
-        <p class="frase" (click)="seleccionarFrase(frase)">{{frase.texto}}</p>
+        <p class="frase" (click)="seleccionarFraseOtras(i)">{{frase.texto}}</p>
       </ng-template>
     </div>
   </div>
