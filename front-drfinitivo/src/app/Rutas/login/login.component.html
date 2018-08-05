@@ -33,21 +33,44 @@
     <app-subtitulo [sutitulo]="tituloLogin"></app-subtitulo>
 
     <form >
-      <div class="form-group">
-        <label for="exampleDropdownFormEmail2">Email address</label>
-        <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
-      </div>
-      <div class="form-group">
-        <label for="exampleDropdownFormPassword2">Password</label>
-        <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-      </div>
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-        <label class="form-check-label" for="dropdownCheck2">
-          Remember me
-        </label>
-      </div>
-      <app-boton [nombreBoton]="nombreIngresar"> </app-boton>
+      <form [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
+        <div class="form-group">
+          <label class="center-block">Email:
+            <input class="form-control" formControlName="email">
+          </label>
+
+          <div *ngIf="loginForm.get('email').errors" class="alert alert-danger">
+            <div *ngIf="loginForm.get('email').errors['required']">
+              Email requerido
+            </div>
+            <div *ngIf="loginForm.get('email').errors['email']">
+              Email incorrecto
+            </div>
+          </div>
+
+          <label class="center-block">Password:
+            <input type="password" class="form-control" formControlName="password">
+          </label>
+
+          <div *ngIf="loginForm.get('password').errors" class="alert alert-danger">
+            <div *ngIf="loginForm.get('password').errors['required']">
+              Password requerido
+            </div>
+            <div *ngIf="loginForm.get('password').errors['minlength']">
+              Password inseguro
+            </div>
+          </div>
+        </div>
+
+        <app-boton  [nombreBoton]="nombreIngresar" type="submit" >
+
+        </app-boton>
+
+
+
+        <!--button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid">Login</button-->
+
+      </form>
     </form>
   </div>
 </div>

@@ -53,9 +53,9 @@ export class UsuarioController {
     @Post('crear')
     async crearUno(
         @Body('nombre') nombre, @Body('nick') nick, @Body('correo') correo,
-        @Body('contrasena') contrasena, @Body('url_foto') url_foto
+        @Body('contrasena') contrasena, @Body('url_foto') url_foto,@Body('esAdministrador')esAdministrador
     ){
-        return this.usuarioService.crearUno(nombre, nick, correo, contrasena, url_foto);
+        return this.usuarioService.crearUno(nombre, nick, correo, contrasena, url_foto,esAdministrador);
     }
 
     @Post()

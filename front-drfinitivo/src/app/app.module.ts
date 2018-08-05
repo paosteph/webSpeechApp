@@ -31,7 +31,7 @@ import {
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FooterComponent } from './Componentes/footer/footer.component';
 import { LoginComponent } from './Rutas/login/login.component';
 import {CookieService} from "ngx-cookie-service";
@@ -80,6 +80,7 @@ import {ARREGLO_RUTAS} from "./app.routes";
     HttpClientModule,
     FormsModule,
     MatButtonModule,
+    ReactiveFormsModule,
     MatIconModule,
     RouterModule.forRoot(
       ARREGLO_RUTAS,
@@ -88,7 +89,7 @@ import {ARREGLO_RUTAS} from "./app.routes";
       }
     )
   ],
-  providers: [CookieService,UsuarioService],
+  providers: [CookieService,UsuarioService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

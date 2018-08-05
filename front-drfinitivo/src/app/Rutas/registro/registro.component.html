@@ -6,46 +6,77 @@
 </mat-card>
 
 <mat-card>
+  <mat-form-field class="example-full-width">
+    <textarea matInput
+              type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingrese su nombre"
+              name="nombre" [(ngModel)]="nombre" #nombreFormulario
+    ></textarea>
+  </mat-form-field>
 
-<form class="example-form" >
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Nombre Completo" name="nombre" [(ngModel)]="nombref">
+    <textarea matInput id="apellido" placeholder="Ingrese su Nickname"
+              name="apellido" [(ngModel)]="nick" #apellidoFormulario
+
+    ></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <textarea matInput
+              id="correo" placeholder="Ingrese su correo"
+              name="correo" [(ngModel)]="correo" #correoFormulario
+
+    ></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <textarea matInput id="pais" placeholder="Ingrese su contraseña"
+              name="pais" [(ngModel)]="contrasena" #paisFormulario
+
+    ></textarea>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Nick" name="nick" [(ngModel)]="nickf">
+    <textarea matInput id="contrasena" placeholder="Ingrese su contraseña"
+              name="pais" [(ngModel)]="contrasena2" #paisFormulario
+
+    ></textarea>
   </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Email"
-           [errorStateMatcher]="matcher" name="correof" [(ngModel)]="correof">
-    <mat-hint>Errors appear instantly!</mat-hint>
-    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Please enter a valid email address
-    </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Ingrese el password" [type]="hide ? 'password' : 'text'" name="contrasenaf" [(ngModel)]="contrasenaf">
-    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-  </mat-form-field>
+  <!--mat-form-field class="example-full-width">
+    <textarea matInput id="ciudad" placeholder="Ingrese su foto"
+              name="ciudad" [(ngModel)]="url_foto" #ciudadFormulario></textarea>
+  </mat-form-field-->
+    <!--div class="form-group">
+      <label for="exampleFormControlFile1" >Example file input</label>
+      <input type="file" class="form-control-file" id="exampleFormControlFile1" [(ngModel)]="url_foto" #ciudadFormulario>
+    </div-->
+<div>
+  <h3>Es administrador ?</h3>
   <br>
-  <mat-form-field>
-    <input matInput placeholder="Ingrese nuevamente el password" [type]="hide ? 'password' : 'text'" name="urlf" [(ngModel)]="urlf">
-    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-  </mat-form-field>
+  <select [(ngModel)]="opcionSeleccionado" (change)="capturar()">
+    <option value="0">Selecciona una opción</option>
+    <option *ngFor="let dato of datos">
+      {{dato}}
+    </option>
+    <br>
+  </select>
+</div>
+  <br>
+  <br>
+  <!-- Prueba para ver la opción seleccionado -->
+  <!--p [hidden]="opcionSeleccionado == '0'">Haz seleccionado la opción # {{ verSeleccion }}</p-->
 
-</form>
   <div class="row">
     <div class="col-sm-4">
-  <app-boton class="tananio" (click)="crear()"
-      [nombreBoton]="botonRegistrase">
-  </app-boton>
+    </div>
+    <div class="col-sm-4">
+    <app-boton type="submit" (click)="validarcontrasena()" routerLink="login" [nombreBoton]="botonRegistrase"></app-boton>
+    </div>
+    <div class="col-sm-4">
     </div>
   </div>
+  <!--button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid">Login</button-->
 </mat-card>
 
-<br>
+  <br>
 <br>
 <br>
 
