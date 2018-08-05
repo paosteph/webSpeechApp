@@ -7,7 +7,7 @@ import {UsuarioService} from "./usuario/usuario.service";
 import {UsuarioEntity} from "./usuario/usuario.entity";
 
 @Controller('Usuario')
-@UseGuards(UsuarioGuard)
+//@UseGuards(UsuarioGuard)
 export class UsuarioController {
     constructor(private _jwtService:JwtService,private usuarioService:UsuarioService){}
 
@@ -71,6 +71,11 @@ export class UsuarioController {
     ) {
         const usuarios = await this.usuarioService.findAll();
         return response.send(usuarios);
+    }
+
+    @Post('obtenerUno')
+    async obtenerUno(@Body('idUsuario') idUsuario){
+        return await this.usuarioService.obtenerUno(idUsuario);
     }
 
 }

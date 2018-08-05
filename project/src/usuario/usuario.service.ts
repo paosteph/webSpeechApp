@@ -51,6 +51,8 @@ export class UsuarioService{
         return await this._usuarioRepositorio.find();
     }
 
-
+    async obtenerUno(idUsuario){
+        return await this._usuarioRepositorio.findOne(idUsuario);
+    }
 
 }
