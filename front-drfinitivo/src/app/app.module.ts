@@ -37,6 +37,8 @@ import { LoginComponent } from './Rutas/login/login.component';
 import {CookieService} from "ngx-cookie-service";
 import { FraseComponent } from './Componentes/frase/frase.component';
 import {UsuarioService} from "../Servicio/usuario.service";
+import {RouterModule} from "@angular/router";
+import {ARREGLO_RUTAS} from "./app.routes";
 
 @NgModule({
   declarations: [
@@ -79,9 +81,14 @@ import {UsuarioService} from "../Servicio/usuario.service";
     FormsModule,
     MatButtonModule,
     MatIconModule,
-
+    RouterModule.forRoot(
+      ARREGLO_RUTAS,
+      {
+        useHash: true,
+      }
+    )
   ],
-  providers: [CookieService, UsuarioService],
+  providers: [CookieService,UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

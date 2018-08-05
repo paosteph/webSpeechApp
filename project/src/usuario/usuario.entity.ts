@@ -29,4 +29,11 @@ export class UsuarioEntity {
 
     @OneToMany(type => Palabra, palabra => palabra.usuario)
     palabras: Palabra[];
+
+    @Column()
+    esAdministrador:boolean;
+
+    @OneToMany(type => NivelEntity,nivel=>nivel.administrador)
+    nivelesCreados: NivelEntity[];
+
 }

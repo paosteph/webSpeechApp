@@ -12,10 +12,4 @@ export class Administrador{
 
     @Column()
     contraseña:string;
-
-    @OneToMany(type => NivelEntity,nivel=>nivel.administrador)
-    niveles: NivelEntity[];
-
-
-
 }

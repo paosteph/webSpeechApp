@@ -46,4 +46,9 @@ export class NivelController{
     async quitarFrase(@Body('idFrase')idFrase,@Body('idNivel')idNivel){
         return await this.nivelService.quitarFraseNivel(idFrase,idNivel);
     }
+
+    @Post('buscarFrase')
+    private async buscarFrase(@Body('palabraBuscada')palabraBuscada){
+        return await this.nivelService.buscarFrases(palabraBuscada);
+    }
 }

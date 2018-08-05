@@ -8,8 +8,8 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class LoginComponent implements OnInit {
 
-  private nombreIngresar;
-  private tituloLogin;
+  nombreIngresar;
+  tituloLogin;
   constructor(private cookieService: CookieService) { }
 
   ngOnInit() {

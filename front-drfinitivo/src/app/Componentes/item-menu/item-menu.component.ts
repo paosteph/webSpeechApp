@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-item-menu',
@@ -8,12 +8,31 @@ import { Component, OnInit } from '@angular/core';
 export class ItemMenuComponent implements OnInit {
 
   constructor() { }
-  private botonIngresar;
-  private titulo;
+  @Input()
+  rutaImagen="assets/img/SALUDOS.jpg";
+
+  @Input()
+  nombreBotonIngresar;
+
+  @Input()
+  titulo;
+
+  @Input()
+  contenido="The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan." +
+    "A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally" +
+    "  bred for hunting.";
+
+  @Output()
+  darclic= new EventEmitter();
+
 
   ngOnInit() {
-    this.botonIngresar = "Comenzar";
-    this.titulo="Nivel";
+
+  }
+
+  dioClic(){
+    console.log("click");
+    this.darclic.emit();
   }
 
 }
