@@ -4,5 +4,5 @@ export interface Usuario  {
   nick: string,
   correo: string,
   contrasena: string,
-  urlUser: string
+  url_foto: string
 }
