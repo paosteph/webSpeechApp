@@ -34,15 +34,56 @@
       <tbody>
       <tr>
         <th>Prácticas Hechas</th>
-        <td>{{practicasTotal}}</td>
+        <td>{{totalPracticas.totalPracticas}}</td>
       </tr>
+      <!--<tr>-->
+        <!--<th>Porcentaje Éxito</th>-->
+        <!--<td>{{porcentajeExito}}</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<th>Prácticas exitosas</th>-->
+        <!--<td>{{practicasExitosas}}</td>-->
+      <!--</tr>-->
+      </tbody>
+    </table>
+    <br>
+    <h5>Mejores prácticas</h5>
+    <table class="table table-hover">
+      <thead>
       <tr>
-        <th>Porcentaje Éxito</th>
-        <td>{{porcentajeExito}}</td>
+        <th scope="col">#</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Correctas</th>
+        <th scope="col">Nivel</th>
       </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let practicaM of practicasMejores">
+        <td>{{practicaM.id}}</td>
+        <td>{{practicaM.fecha}}</td>
+        <td>{{practicaM.porcentajeExito}}</td>
+        <td>{{practicaM.nivel.nombre}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <br>
+    <h5>Peores prácticas</h5>
+    <table class="table table-hover">
+      <thead>
       <tr>
-        <th>Prácticas exitosas</th>
-        <td>{{practicasExitosas}}</td>
+        <th scope="col">#</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Correctas</th>
+        <th scope="col">Nivel</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let practicaP of practicasPeores">
+        <td>{{practicaP.id}}</td>
+        <td>{{practicaP.fecha}}</td>
+        <td>{{practicaP.porcentajeExito}}</td>
+        <td>{{practicaP.nivel.nombre}}</td>
       </tr>
       </tbody>
     </table>
@@ -58,6 +99,7 @@
     [nombreBoton]="botonResumen"
   ></app-boton>
 </div>
-
+<br><br>
+<app-footer></app-footer>
 
 

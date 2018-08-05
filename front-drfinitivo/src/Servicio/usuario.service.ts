@@ -31,5 +31,31 @@ postCrearUsuario(nombref,nickf,correof,contyrasenaf,urlf){
       );
   }
 
+  obtenerTotalPracticas(idUsuario){
+    let header= UsuarioService.getCommonHeaders();
+    return this.http.post(
+      "http://localhost:3000/Practica/obtenerTotal",
+      {idUsuario: idUsuario},
+      {headers: header}
+    );
+  }
+
+  obtenerTresMejores(idUsuario){
+    let header= UsuarioService.getCommonHeaders();
+    return this.http.post(
+      "http://localhost:3000/Practica/tresMejores",
+      {idUsuario: idUsuario},
+      {headers: header}
+    );
+  }
+
+  obtenerTresPeores(idUsuario){
+    let header= UsuarioService.getCommonHeaders();
+    return this.http.post(
+      "http://localhost:3000/Practica/tresPeores",
+      {idUsuario: idUsuario},
+      {headers: header}
+    );
+  }
 
 }

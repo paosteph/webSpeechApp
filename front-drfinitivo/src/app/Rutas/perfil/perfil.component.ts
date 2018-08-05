@@ -14,7 +14,7 @@ export class PerfilComponent implements OnInit {
   // @Input() nombre;
   // @Input() url_foto;
   // @Input() nick;
-  @Input() practicasTotal;
+  // @Input() practicasTotal;
   @Input() practicasExitosas;
   @Input() porcentajeExito;
 
@@ -24,6 +24,9 @@ export class PerfilComponent implements OnInit {
   private botonResumen;
   private idUsuario;
   usuario = {};
+  totalPracticas = {};
+  practicasMejores = [];
+  practicasPeores = [];
 
   constructor(private cookieService: CookieService, private _httpClient: HttpClient, private _usuarioService:UsuarioService) {
   }
@@ -31,7 +34,7 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
     // cookie del usuario
     //this.idUsuario = this.cookieService.get('usuarioId');
-    this.idUsuario = "5";
+    this.idUsuario = "1";
 
     this.titulo = "Mi perfil";
     this.subtRecord = "Records";
@@ -40,6 +43,9 @@ export class PerfilComponent implements OnInit {
     //this.nombre = "Juanito Alimaña";
 
     this.obtenerUsuario();
+    this.obtenerTotalPracticas();
+    this.obtenerTresMejores();
+    this.obtenerTresPeores();
   }
 
   obtenerUsuario(){
@@ -47,9 +53,26 @@ export class PerfilComponent implements OnInit {
       (usuario: Usuario)=>{
             this.usuario = usuario;
             console.log(usuario);
-            }
+      }
     );
+  }
 
+  obtenerTotalPracticas(){
+    this._usuarioService.obtenerTotalPracticas(this.idUsuario).subscribe(
+      (total: any)=>{this.totalPracticas = total; console.log('Total',this.totalPracticas)}
+    );
+  }
+
+  obtenerTresMejores(){
+    this._usuarioService.obtenerTresMejores(this.idUsuario).subscribe(
+      (mejores: any)=>{this.practicasMejores = mejores; console.log('Mejores',this.practicasMejores)}
+    );
+  }
+
+  obtenerTresPeores(){
+    this._usuarioService.obtenerTresPeores(this.idUsuario).subscribe(
+      (peores: any)=>{this.practicasPeores = peores; console.log('Peores',this.practicasPeores)}
+    );
   }
 
 }

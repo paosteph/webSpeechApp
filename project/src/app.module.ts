@@ -11,6 +11,9 @@ import {Frase} from "./nivel/frase.entity";
 import {AzureController} from "./azure/azure.controller";
 import {NivelService} from "./nivel/nivel.service";
 import {UsuarioService} from "./usuario/usuario.service";
+import {Practica} from "./usuario/practica.entity";
+import {PracticaService} from "./usuario/practica.service";
+import {PracticaController} from "./practica.controller";
 
 
 @Module({
@@ -23,9 +26,9 @@ import {UsuarioService} from "./usuario/usuario.service";
         database: 'webspeech',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,
-    }), TypeOrmModule.forFeature([UsuarioEntity, NivelEntity, Frase])],
+    }), TypeOrmModule.forFeature([UsuarioEntity, NivelEntity, Frase, Practica])],
 
-    controllers: [AppController, NivelController, UsuarioController, AzureController],
-    providers: [AppService, JwtService, NivelService, UsuarioService],
+    controllers: [AppController, NivelController, UsuarioController, AzureController, PracticaController],
+    providers: [AppService, JwtService, NivelService, UsuarioService, PracticaService],
 })
 export class AppModule {}
