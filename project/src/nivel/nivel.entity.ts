@@ -1,7 +1,7 @@
 import {Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Practica} from "../usuario/practica.entity";
 import {Frase} from "./frase.entity";
-import {Administrador} from "../Administrador/administrador.entity";
+import {UsuarioEntity} from "../usuario/usuario.entity";
 
 @Entity('nivel')
 export class NivelEntity{
@@ -18,6 +18,6 @@ export class NivelEntity{
     @ManyToMany(type => Frase, frase => frase.nivel)
     frases: Frase[];
 
-    @ManyToOne(type=>Administrador, administrador=>administrador.niveles)
-    administrador: Administrador;
+    @ManyToOne(type=>UsuarioEntity,usuario=>usuario.nivelesCreados)
+    administrador: UsuarioEntity;
 }
