@@ -121,4 +121,13 @@ export class NivelService {
 
         return {mensaje:"frase eliminado"}
     }
+
+    async crearNivel(nombre,descripcion){
+        const nivel= new NivelEntity();
+        nivel.nombre=nombre;
+        nivel.descripcion=descripcion;
+        await this.nivelRepository.save(nivel);
+
+        return nivel
+    }
 }

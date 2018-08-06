@@ -1,3 +1,30 @@
-<p>
-  nuevo-nivel works!
-</p>
+
+<div class="col-sm-12">
+  <app-titulo titulo="Nuevo Nivel"></app-titulo>
+</div>
+<br><br>
+<form class="form-check-inline row"
+      (ngSubmit)="crearNivel(formulario)"
+      #formulario="ngForm">
+  <div class="col-sm-12">
+    <label for="nombre">Nombre</label>
+    <input class="form-control mr-sm-3" type="text"
+           id="nombre"
+           [(ngModel)]="nombre"
+           name="nombre">
+  </div>
+  <div class="col-sm-12">
+    <label for="descripcion">Descripcion</label>
+    <textarea class="form-control " type="text"
+              [(ngModel)]="descripcion"
+              id="descripcion"
+              rows="3"
+              name="descripcion">
+  </textarea>
+  </div>
+
+  <div class="col-sm-12">
+    <br>
+    <app-boton type="submit" nombreBoton="crearNivel"></app-boton>
+  </div>
+</form>

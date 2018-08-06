@@ -51,4 +51,10 @@ export class NivelController{
     private async buscarFrase(@Body('palabraBuscada')palabraBuscada){
         return await this.nivelService.buscarFrases(palabraBuscada);
     }
+
+    @Post('crear')
+    private async crearNuevo(@Body('nombre')nombre, @Body('descripcion')descripcion){
+        return await this.nivelService.crearNivel(nombre,descripcion);
+    }
+
 }
