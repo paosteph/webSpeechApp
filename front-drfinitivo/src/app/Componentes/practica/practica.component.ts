@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-practica',
@@ -15,11 +16,14 @@ export class PracticaComponent implements OnInit {
   private finGrabacion: boolean;
   private oculto: boolean;
 
+  constructor(private http: HttpClient){}
 
   ngOnInit() {
     this.grabando = false;
     this.finGrabacion = false;
     this.oculto = false;
+
+    this.consultaTextToSpeech();
   }
 
   empezarGrabacion(){
@@ -31,6 +35,34 @@ export class PracticaComponent implements OnInit {
     this.finGrabacion = true;
     this.grabando = false;
     this.oculto = true;
+  }
+
+  consultaTextToSpeech(){
+    const url = "https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize";
+    const body = {
+      "text":"bye world"
+    };
+    const headers = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic MmVlYTY3M2MtODY4NS00ZDQyLWIzOTQtZmMxNTVhODNjMGQ0OlBFajMwYVJOM3JoUg==',
+        'Accept': 'audio/wav'
+      })
+    };
+    // let headers = new HttpHeaders();
+    // headers.append('Content-Type',  'application/json' );
+    // headers.append('Authorization','Basic MmVlYTY3M2MtODY4NS00ZDQyLWIzOTQtZmMxNTVhODNjMGQ0OlBFajMwYVJOM3JoUg==');
+    // headers.append('Accept', 'audio/wav');
+
+    const request$ = this.http.post(url, body, headers);
+    request$.subscribe(
+      (audio:any)=>{
+        console.log("Audio", audio);
+      },
+      (error)=>{
+        console.log("Error :(", error);
+      }
+    );
   }
 
 }

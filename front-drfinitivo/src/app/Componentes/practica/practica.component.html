@@ -1,54 +1,54 @@
-<!--<div class="row">-->
-  <!--<div class="col-sm-8 card">-->
-    <!--<div class="card-body ">-->
-      <!--<h5 class="card-title">{{palabraFrase}}</h5>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div class="col-sm-1"></div>-->
-  <!--<div class="col-sm-3" *ngIf="!oculto">-->
-    <!--<button type="button" class="btn btn-outline-success btn-block boton"-->
-            <!--*ngIf="!grabando; else parar" (click)="empezarGrabacion()">Grabar</button>-->
-    <!--<ng-template #parar>-->
-      <!--<button type="button" class="btn btn-outline-danger btn-block boton"-->
-              <!--(click)="finalizarGrabacion()">Parar</button>-->
-    <!--</ng-template>-->
-  <!--</div>-->
-<!--</div>-->
-<!--<br><br>-->
-<!--<div class="row">-->
-  <!--<div class="col-sm-4" *ngIf="finGrabacion">-->
-    <!--<app-subtitulo-->
-      <!--[sutitulo]="subtResultado"-->
-    <!--&gt;</app-subtitulo>-->
-  <!--</div>-->
-<!--</div>-->
-<!--<br>-->
-<!--<div class="row" style="padding-top: 20px">-->
-  <!--<div class="col-md-7 card color">-->
-    <!--<table class="table table-borderless ">-->
-      <!--<tbody>-->
-      <!--<tr>-->
-        <!--<th>Lo que pronunciaste</th>-->
-        <!--<td>-->
-          <!--<div class="card border-white palabra">{{loQueDijo}}</div>-->
-        <!--</td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-        <!--<th>Lo correcto</th>-->
-        <!--<td>-->
-          <!--<div class="card border-white palabra">{{loCorrecto}}</div>-->
-        <!--</td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-        <!--<th>Resultado</th>-->
-        <!--<td class="resultadoBien" *ngIf="resultado; else incorrectBlock">MUY BIEN</td>-->
-        <!--<ng-template #incorrectBlock>-->
-          <!--<td class="resultadoMal">MUY MAL !</td>-->
-        <!--</ng-template>-->
-      <!--</tr>-->
-      <!--</tbody>-->
-    <!--</table>-->
-  <!--</div>-->
-<!--</div>-->
+<div class="row">
+  <div class="col-sm-8 card">
+    <div class="card-body ">
+      <h5 class="card-title">{{palabraFrase}}</h5>
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-3" *ngIf="!oculto">
+    <button type="button" class="btn btn-outline-success btn-block boton"
+            *ngIf="!grabando; else parar" (click)="empezarGrabacion()">Grabar</button>
+    <ng-template #parar>
+      <button type="button" class="btn btn-outline-danger btn-block boton"
+              (click)="finalizarGrabacion()">Parar</button>
+    </ng-template>
+  </div>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-sm-4" *ngIf="finGrabacion">
+    <app-subtitulo
+      [sutitulo]="subtResultado"
+    ></app-subtitulo>
+  </div>
+</div>
+<br>
+<div class="row" style="padding-top: 20px">
+  <div class="col-md-7 card color">
+    <table class="table table-borderless ">
+      <tbody>
+      <tr>
+        <th>Lo que pronunciaste</th>
+        <td>
+          <div class="card border-white palabra">{{loQueDijo}}</div>
+        </td>
+      </tr>
+      <tr>
+        <th>Lo correcto</th>
+        <td>
+          <div class="card border-white palabra">{{loCorrecto}}</div>
+        </td>
+      </tr>
+      <tr>
+        <th>Resultado</th>
+        <td class="resultadoBien" *ngIf="resultado; else incorrectBlock">MUY BIEN</td>
+        <ng-template #incorrectBlock>
+          <td class="resultadoMal">MUY MAL !</td>
+        </ng-template>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<iframe src="http://localhost:4400" frameborder="0" width="300" height="500"></iframe>
+<!--<iframe src="http://localhost:4400" frameborder="0" width="300" height="500"></iframe>-->
