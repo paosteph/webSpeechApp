@@ -35,6 +35,7 @@ contrasena2;
   ngOnInit() {
     this.botonRegistrase = "Registrarse";
     this.datos = ['true','false']
+
     }
   cargar(){
     this._httpClient.get<Usuario>('http://localhost:3000/Usuario/mostrar')
@@ -52,7 +53,7 @@ contrasena2;
       correo: this.correo,
       contrasena:this.contrasena,
       url_foto: 'https://api.adorable.io/avatars/285/'+this.nombre+'.png',
-      esAdministrador:this.verSeleccion
+      esAdministrador:'false'
     }, httpOptions).subscribe(value => console.log(value))
   }
   capturar() {

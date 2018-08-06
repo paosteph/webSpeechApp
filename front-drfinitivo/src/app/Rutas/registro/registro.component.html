@@ -35,7 +35,7 @@
     ></textarea>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <textarea matInput id="contrasena" placeholder="Ingrese su contraseña"
+    <textarea matInput id="contrasena" placeholder="Ingrese su contraseña nuevamente"
               name="pais" [(ngModel)]="contrasena2" #paisFormulario
 
     ></textarea>
@@ -48,7 +48,9 @@
       <label for="exampleFormControlFile1" >Example file input</label>
       <input type="file" class="form-control-file" id="exampleFormControlFile1" [(ngModel)]="url_foto" #ciudadFormulario>
     </div-->
-<div>
+<!--<div>
+  <br>
+  <br>
   <h3>Es administrador ?</h3>
   <br>
   <select [(ngModel)]="opcionSeleccionado" (change)="capturar()">
@@ -58,7 +60,9 @@
     </option>
     <br>
   </select>
-</div>
+</div>-->
+
+
   <br>
   <br>
   <!-- Prueba para ver la opción seleccionado -->
@@ -68,11 +72,12 @@
     <div class="col-sm-4">
     </div>
     <div class="col-sm-4">
-    <app-boton type="submit" (click)="validarcontrasena()" routerLink="login" [nombreBoton]="botonRegistrase"></app-boton>
+    <app-boton type="submit" (click)="validarcontrasena()" routerLink="" [nombreBoton]="botonRegistrase"></app-boton>
     </div>
     <div class="col-sm-4">
     </div>
   </div>
+
   <!--button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid">Login</button-->
 </mat-card>
 

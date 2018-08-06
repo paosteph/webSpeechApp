@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   nombreIngresar;
   tituloLogin;
+  botonRegistro;
   constructor(private cookieService: CookieService, private fb: FormBuilder,
               title: Title) {
     title.setTitle('Login');
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
     this.validarUsuario();
     this.nombreIngresar="Ingresar";
     this.tituloLogin="Login";
+    this.botonRegistro = "Registrarse";
   }
 
   validarUsuario(){
@@ -40,5 +42,6 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.get('password').value;
   }
 
+  
 
 }
