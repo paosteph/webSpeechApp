@@ -36,7 +36,7 @@
       <form [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
         <div class="form-group">
           <label class="center-block">Email:
-            <input class="form-control" formControlName="email">
+            <input class="form-control" formControlName="email" [(ngModel)]="correo">
           </label>
 
           <div *ngIf="loginForm.get('email').errors" class="alert alert-danger">
@@ -49,7 +49,7 @@
           </div>
 
           <label class="center-block">Password:
-            <input type="password" class="form-control" formControlName="password">
+            <input type="password" class="form-control" formControlName="password" [(ngModel)]="contrasena">
           </label>
 
           <div *ngIf="loginForm.get('password').errors" class="alert alert-danger">
@@ -62,7 +62,7 @@
           </div>
         </div>
 
-        <app-boton  [nombreBoton]="nombreIngresar" type="submit" >
+        <app-boton  [nombreBoton]="nombreIngresar" (darClic)="logeo()" routerLink="home/perfil" >
 
         </app-boton>
         <br>

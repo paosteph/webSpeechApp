@@ -20,21 +20,14 @@ export class UsuarioController {
 
     @Post('logear')
     @ReflectMetadata('necesitaValidacion',false)
-    loguearUsuario(@Body('nickname') nickname,@Body('password') password,@Res() response){
-        const credenciales=nickname && password;
+    async loguearUsuario(@Body('correo') correo,@Body('contrasena') contrasena){
+        const credenciales=correo && contrasena;
         if(credenciales){
-            if(nickname=='n'&&password=='p'){
-                const payload={user:'n'};
-                const parametros={nombre:'cookieSesion',
-                    valor:this._jwtService.emitirToken(payload)};
 
-                response.cookie(parametros.nombre,parametros.valor);
-                response.send("logueado correctamente");
-            }else{
-                response.status(410).send('credenciales incorrectas');
-            }
+            return await this.usuarioService.logearUsuario(correo, contrasena);
         }else{
-            response.status(403).send('credenciales invalidas')
+            console.log('no validado validado')
+            //response.status(403).send('credenciales invalidas')
         }
     }
 

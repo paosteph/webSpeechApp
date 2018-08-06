@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Title} from "@angular/platform-browser";
+import {Usuario} from "../../../clases/usuario";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -12,8 +14,10 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   nombreIngresar;
   tituloLogin;
+  correo;
+  contrasena;
   botonRegistro;
-  constructor(private cookieService: CookieService, private fb: FormBuilder,
+  constructor(private cookieService: CookieService,private _http:HttpClient, private fb: FormBuilder,
               title: Title) {
     title.setTitle('Login');
     this.buildForm();
@@ -21,7 +25,7 @@ export class LoginComponent implements OnInit {
   buildForm() {
     this.loginForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email]) ],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)]) ],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(4)]) ],
     });
   }
 
@@ -34,7 +38,21 @@ export class LoginComponent implements OnInit {
 
   validarUsuario(){
     //guardo coookie
-    this.cookieService.set( 'usuarioId', "5" ); //cambiar con id servicio
+    this.cookieService.set( 'usuarioId', "5" );
+  }
+
+  logeo(){
+
+    this._http.post<Usuario>('http://localhost:3000/Usuario/logear', {
+     correo: this.correo,
+     contrasena:this.contrasena,
+    }, httpOptions).subscribe( (usuario:any)=> {
+      console.log(usuario);
+      this.cookieService.set( 'cookieId',usuario.id );
+      this.cookieService.set('cookieEsAdmin',usuario.esAdministrador);
+    })
+
+
   }
 
   submit() {
@@ -42,6 +60,12 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.get('password').value;
   }
 
-  
+
+
+}
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+  })
 
 }
