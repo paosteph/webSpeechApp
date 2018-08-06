@@ -55,5 +55,11 @@ export class UsuarioService{
     async obtenerUno(idUsuario){
         return await this._usuarioRepositorio.findOne(idUsuario);
     }
+     async logearUsuario(correo,contrasena){
 
+        const usuario= await this._usuarioRepositorio.findOne({where:{correo:correo,contrasena:contrasena}});
+         console.log(usuario);
+         return usuario;
+
+}
 }
