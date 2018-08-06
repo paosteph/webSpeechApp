@@ -65,6 +65,17 @@ export const ARREGLO_RUTAS: Routes = [
   {
     component: TestGratisComponent,
     path: "testGratis"
+  },
+
+  {
+    redirectTo:"/home/menuP",
+    pathMatch:"full",
+    path: "**"
+  },
+  {
+    redirectTo:"login",
+    pathMatch:"full",
+    path: ""
   }
 
 ]
