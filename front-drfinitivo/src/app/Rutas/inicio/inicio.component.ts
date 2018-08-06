@@ -7,7 +7,7 @@ import {CookieService} from "ngx-cookie-service";
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
-  private botonMenu;
+  botonMenu;
   private idUsuario;
 
   constructor(private cookieService: CookieService) { }

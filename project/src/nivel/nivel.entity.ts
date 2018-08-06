@@ -12,6 +12,9 @@ export class NivelEntity{
     @Column()
     nombre: string;
 
+    @Column()
+    descripcion: string;
+
     @OneToMany(type => Practica, practica => practica.nivel)
     practicas: Practica[];
 

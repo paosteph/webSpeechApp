@@ -6,11 +6,32 @@ import {Frase} from "./frase.entity";
 
 @Injectable()
 export class NivelService {
+
+
+    ArregloNiveles= [
+        {'id': 1, 'nombre': 'Verbs', 'descripcion': 'En este nivel te daremos un listado de verbos para que los puedas practicar'},
+        {'id': 2, 'nombre': 'Greatings', 'descripcion': 'En este nivel te daremos un listado de saludos para que los puedas practicar'},
+        {'id': 3, 'nombre': 'Sentences', 'descripcion': 'En este nivel te daremos un listado de oraciones para que los puedas practicar'},
+        {'id': 4, 'nombre': 'Verbs2', 'descripcion': 'En este nivel te daremos un listado de verbos para que los puedas practicar'},
+        {'id': 5, 'nombre': 'Greatings2', 'descripcion': 'En este nivel te daremos un listado de saludos para que los puedas practicar'},
+        {'id': 6, 'nombre': 'Sentences2', 'descripcion': 'En este nivel te daremos un listado de oraciones para que los puedas practicar'}
+    ];
+
     constructor(@InjectRepository(NivelEntity)
                 private readonly nivelRepository: Repository<NivelEntity>,
                 @InjectRepository(Frase)
                 private readonly fraseRepository: Repository<Frase>){}
 
+    crearNiveles() {
+        for(var niveles in this.ArregloNiveles) {
+            const nivel = new NivelEntity();
+            nivel.id = this.ArregloNiveles[niveles].id;
+            nivel.nombre = this.ArregloNiveles[niveles].nombre;
+            nivel.descripcion = this.ArregloNiveles[niveles].descripcion;
+            this.nivelRepository.save(nivel);
+        }
+        return this.nivelRepository.find();
+    }
     async obtenerFrasesNivel(idNivel){
         const nivel= await this.nivelRepository.findOne(idNivel,{relations:["frases"]});
         return nivel.frases;
@@ -120,5 +141,8 @@ export class NivelService {
         this.fraseRepository.delete(frase);
 
         return {mensaje:"frase eliminado"}
+    }
+    async findAll(): Promise<NivelEntity[]> {
+        return await this.nivelRepository.find();
     }
 }

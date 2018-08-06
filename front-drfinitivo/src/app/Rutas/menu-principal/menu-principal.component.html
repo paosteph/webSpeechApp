@@ -13,7 +13,11 @@
   <div class="row">
 
     <div class="col-sm-4 ">
-      <app-item-menu></app-item-menu>
+      <app-item-menu
+        [contenido]="nivel.descripcion"
+        [titulo]="nivel.nombre"
+      >
+      </app-item-menu>
     </div>
     <div class="col-sm-4 ">
       <app-item-menu></app-item-menu>

@@ -1,8 +1,9 @@
-import {Controller, Get, Post, Body, UseGuards, ReflectMetadata, Query, Res} from "@nestjs/common";
+import {Controller, Get, Post, Body, UseGuards, ReflectMetadata, Query, Res, Req} from "@nestjs/common";
 import {UsuarioPipe} from "./usuario/usuario.pipe";
 import {Admin_Login_Schema} from "./Administrador/administrador.schema";
 import {UsuarioGuard} from "./autentificacion/usuario.guard";
 import {NivelService} from "./nivel/nivel.service";
+import {NivelEntity} from "./nivel/nivel.entity";
 
 
 @Controller('nivel')
@@ -50,5 +51,19 @@ export class NivelController{
     @Post('buscarFrase')
     private async buscarFrase(@Body('palabraBuscada')palabraBuscada){
         return await this.nivelService.buscarFrases(palabraBuscada);
+    }
+    @Get('listarTodosNiveles')
+    async listarTodos(
+        @Res() response,
+        @Req() request,
+    ) {
+        const usuarios = await this.nivelService.findAll();
+        return response.send(usuarios);
+    }
+
+    @Post()
+    async crearNivelesFijos() {
+        const niveles = this.nivelService.crearNiveles();
+        return niveles;
     }
 }
