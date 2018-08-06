@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Rutas/home/home.component';
 import { InicioComponent } from './Rutas/inicio/inicio.component';
@@ -39,6 +38,8 @@ import { FraseComponent } from './Componentes/frase/frase.component';
 import {UsuarioService} from "../Servicio/usuario.service";
 import {RouterModule} from "@angular/router";
 import {ARREGLO_RUTAS} from "./app.routes";
+import { AdminComponent } from './Rutas/admin/admin.component';
+import { EliminarFraseComponent } from './Rutas/eliminar-frase/eliminar-frase.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,9 @@ import {ARREGLO_RUTAS} from "./app.routes";
     BotonComponent,
     FooterComponent,
     LoginComponent,
-    FraseComponent
+    FraseComponent,
+    AdminComponent,
+    EliminarFraseComponent
   ],
   imports: [
     BrowserModule,MatButtonModule, MatCheckboxModule,
