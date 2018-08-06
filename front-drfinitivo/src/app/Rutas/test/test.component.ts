@@ -12,9 +12,7 @@ export class TestComponent implements OnInit {
 
   private titulo;
   private subtResultado;
-  private grabando: boolean;
-  private finGrabacion: boolean;
-  private oculto: boolean;
+
   private botonReintentar;
   private botonSiguiente;
   //practicas
@@ -28,9 +26,7 @@ export class TestComponent implements OnInit {
     this.titulo = "Mi Test";
     this.subtResultado = "Resultado";
     this.subtNivel = "Basico";
-    this.grabando = false;
-    this.finGrabacion = false;
-    this.oculto = false;
+
     this.palabraFrase = "Probando";
     this.botonReintentar = "Reintentar";
     this.botonSiguiente = "Siguiente palabras";
@@ -41,15 +37,6 @@ export class TestComponent implements OnInit {
     this.resultado = false;
   }
 
-  empezarGrabacion(){
-    this.grabando = true;
-    this.finGrabacion = false;
-  }
 
-  finalizarGrabacion(){
-    this.finGrabacion = true;
-    this.grabando = false;
-    this.oculto = true;
-  }
 
 }

@@ -20,31 +20,7 @@
   </div>
 </div>
 <br>
-<div class="row">
-  <div class="col-sm-8 card">
-    <div class="card-body ">
-      <h5 class="card-title">{{palabraFrase}}</h5>
-    </div>
-  </div>
-  <div class="col-sm-1"></div>
-  <div class="col-sm-3" *ngIf="!oculto">
-    <button type="button" class="btn btn-outline-success btn-block boton"
-            *ngIf="!grabando; else parar" (click)="empezarGrabacion()">Grabar</button>
-    <ng-template #parar>
-      <button type="button" class="btn btn-outline-danger btn-block boton"
-              (click)="finalizarGrabacion()">Parar</button>
-    </ng-template>
-  </div>
-</div>
-<br><br>
-<div class="row">
-  <div class="col-sm-4" *ngIf="finGrabacion">
-    <app-subtitulo
-      [sutitulo]="subtResultado"
-    ></app-subtitulo>
-  </div>
-</div>
-<br>
+
 
 <app-practica *ngIf="finGrabacion"
   [loQueDijo]="loQueDijo"

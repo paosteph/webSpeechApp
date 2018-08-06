@@ -94,4 +94,31 @@ export class NivelService {
 
     }
 
+    calificarImagen(fraseDicha:String,fraseCorrecta:String){
+        const palabrasCorrectas=fraseCorrecta.split(" ");
+        const calificaciones:number[]=palabrasCorrectas.map((palabra)=>{
+            if(fraseDicha.indexOf(palabra)!==-1)
+                return 1
+            else
+                return 0
+        });
+        const porcentajeExito= calificaciones.reduce((calificacionAnterior, calificacionActual)=>{
+            return calificacionAnterior+calificacionActual})/calificaciones.length;
+
+        return porcentajeExito
+    }
+
+    async elminarNivel(idNivel){
+        const nivel= await this.nivelRepository.findOne(idNivel);
+        this.nivelRepository.delete(nivel);
+
+        return {mensaje:"nivel eliminado"}
+    }
+
+    async elminarFrase(idFrase){
+        const frase= await this.fraseRepository.findOne(idFrase);
+        this.fraseRepository.delete(frase);
+
+        return {mensaje:"frase eliminado"}
+    }
 }

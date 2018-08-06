@@ -11,10 +11,26 @@ export class PracticaComponent implements OnInit {
   @Input() loQueDijo;
   @Input() loCorrecto;
 
-  constructor() { }
+  private grabando: boolean;
+  private finGrabacion: boolean;
+  private oculto: boolean;
+
 
   ngOnInit() {
+    this.grabando = false;
+    this.finGrabacion = false;
+    this.oculto = false;
+  }
 
+  empezarGrabacion(){
+    this.grabando = true;
+    this.finGrabacion = false;
+  }
+
+  finalizarGrabacion(){
+    this.finGrabacion = true;
+    this.grabando = false;
+    this.oculto = true;
   }
 
 }
