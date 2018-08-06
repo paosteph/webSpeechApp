@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-nuevo-nivel',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NuevoNivelComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpClient:HttpClient,
+              private router:Router) { }
 
   ngOnInit() {
   }
 
+  crearNivel(formulario){
+    const controles = formulario.controls;
+    const nombreNivel=controles.nombre.value;
+    const descripcionNivel=controles.descripcion.value;
+
+    this.httpClient.post("http://localhost/3000/nivel/crear",{nombre:nombreNivel,descripcion:descripcionNivel
+
+    }).subscribe((mensaje:any)=>{
+      console.log(mensaje);
+      const idNivel=mensaje.id;
+      if(idNivel){
+        this.router.navigate(["Admin","frasesNivel",idNivel]);
+      }
+    });
+  }
 }

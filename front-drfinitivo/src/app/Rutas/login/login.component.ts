@@ -30,16 +30,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.validarUsuario();
     this.nombreIngresar="Ingresar";
     this.tituloLogin="Login";
     this.botonRegistro = "Registrarse";
   }
 
-  validarUsuario(){
-    //guardo coookie
-    this.cookieService.set( 'usuarioId', "5" );
-  }
 
   logeo(){
 
