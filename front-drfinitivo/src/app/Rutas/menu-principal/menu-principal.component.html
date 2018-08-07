@@ -1,3 +1,5 @@
+<br>
+<br>
 <div class="row">
 
   <div class="col-sm-11 negroletra">
@@ -12,86 +14,17 @@
 
   <div class="row" >
 
-    <div class="col-sm-4 " *ngFor="let nivel of niveles_listaAMostrar">
+    <div class="col-sm-4 " *ngFor="let niv of niveles;">
       <app-item-menu
-        [contenido]="nivel.descripcion"
-        [titulo]="nivel.nombre"
+        [contenido]="niv.descripcion"
+        [titulo]="niv.nombre"
+
       >
       </app-item-menu>
     </div>
-    <div class="col-sm-4 ">
-      <app-item-menu></app-item-menu>
-    </div>
-    <div class="col-sm-4 ">
-      <app-item-menu></app-item-menu>
-    </div>
 
   </div>
 </div>
 <br>
 <br>
 
-<br>
-<br>
-<div class="blancofranja" >
-
-  <div class="row">
-
-    <div class="col-sm-4 ">
-      <app-item-menu></app-item-menu>
-    </div>
-    <div class="col-sm-4 ">
-      <app-item-menu></app-item-menu>
-    </div>
-    <div class="col-sm-4 ">
-      <app-item-menu></app-item-menu>
-    </div>
-
-  </div>
-</div>
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Basic Example - Watson Text to Speech</title>
-
-</head>
-<body>
-<div class="container">
-  <a href="/">&laquo; Examples</a>
-
-  <section>
-    <h2>Basic Text to Speech Example</h2>
-    <textarea id="text" rows="6" cols="80">Hello from IBM Watson</textarea>
-    <p><button id="button">Synthesize Text</button></p>
-  </section>
-
-  <script src="bower_components/watson-speech/dist/watson-speech.js"></script>
-  <!-- window.fetch pollyfill for IE/Edge & Older Chrome/FireFox -->
-  <script src="bower_components/fetch/fetch.js"></script>
-
-  <h2>Code for this demo:</h2>
-  <pre><code><script style="display: block;">
-document.querySelector('#button').onclick = function () {
-  fetch('/api/text-to-speech/token')
-    .then(function(response) {
-      return response.text();
-    }).then(function (token) {
-      WatsonSpeech.TextToSpeech.synthesize({
-        text: document.querySelector('#text').value,
-        token: token
-      }).on('error', function(err) {
-        console.log('audio error: ', err);
-      });
-    });
-};
-</script></code></pre>
-</div>
-</body>
-</html>

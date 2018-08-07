@@ -7,30 +7,18 @@ import {NivelService} from "../../../Servicio/nivel.service";
   selector: 'app-menu-principal',
   templateUrl: './menu-principal.component.html',
   styleUrls: ['./menu-principal.component.css'],
-  providers:[NivelService]
 })
 export class MenuPrincipalComponent implements OnInit {
+  niveles;
 
-  url: string;
-  listaNiveles=[];
-  niveles_listaAMostrar=[];
-  constructor(private _http:HttpClient,private nivelServer:NivelService) { }
-
+  constructor(private _http:HttpClient) { }
+nombreNivel='Comenzar'
   ngOnInit() {
-    this.nivelServer.getNiveles().subscribe(
-      (result: any[]) => {
-        this.listaNiveles = result;
-        this.niveles_listaAMostrar = this.obtenerListaAMostrar(this.listaNiveles);
-        console.log(this.listaNiveles);
-     }
-    );
+    this._http.get("http://localhost:3000/nivel/listarTodosNiveles").subscribe((niveles:any[])=>{
+      this.niveles=niveles;
+    });
     }
 
-  obtenerListaAMostrar(listaNivels: any []): any [] {
-    let lista = listaNivels;
-    console.log(lista);
-    return lista;
 
-  }
 
 }
