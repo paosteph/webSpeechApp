@@ -14,6 +14,7 @@ import {UsuarioService} from "./usuario/usuario.service";
 import {Practica} from "./usuario/practica.entity";
 import {PracticaService} from "./usuario/practica.service";
 import {PracticaController} from "./practica.controller";
+import {AudioController} from "./audio/audio.controller";
 
 
 @Module({
@@ -28,7 +29,7 @@ import {PracticaController} from "./practica.controller";
         synchronize: true,
     }), TypeOrmModule.forFeature([UsuarioEntity, NivelEntity, Frase, Practica])],
 
-    controllers: [AppController, NivelController, UsuarioController, AzureController, PracticaController],
+    controllers: [AppController, NivelController, UsuarioController, AzureController, PracticaController,AudioController],
     providers: [AppService, JwtService, NivelService, UsuarioService, PracticaService],
 })
 export class AppModule {}
