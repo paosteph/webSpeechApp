@@ -41,6 +41,7 @@ import {ARREGLO_RUTAS} from "./app.routes";
 import { AdminComponent } from './Rutas/admin/admin.component';
 import { EliminarFraseComponent } from './Rutas/eliminar-frase/eliminar-frase.component';
 import { SeleccionarNivelComponent } from './Rutas/seleccionar-nivel/seleccionar-nivel.component';
+import {NivelService} from "../Servicio/nivel.service";
 
 @NgModule({
   declarations: [
@@ -94,7 +95,7 @@ import { SeleccionarNivelComponent } from './Rutas/seleccionar-nivel/seleccionar
       }
     )
   ],
-  providers: [CookieService,UsuarioService,],
+  providers: [CookieService,UsuarioService,NivelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

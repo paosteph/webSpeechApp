@@ -16,11 +16,7 @@ export class UsuarioService {
       "Authorization, X-Requested-With, Access-Control-Allow-Origin, Access-Control-Allow-Methods");
     return headers;
   }
- postCrearUsuario(nombref,nickf,correof,contyrasenaf,urlf){
-  let header= UsuarioService.getCommonHeaders();
-  return this.http.post("http://localhost:3000/Usuario/crear",{nombre:nombref,nick:nickf,correo:correof,contrasena:contyrasenaf,url_foto:urlf},{headers: header})
 
-  }
 
   obtenerUno(idUsuario){
     let header= UsuarioService.getCommonHeaders();
