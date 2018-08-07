@@ -2,20 +2,3 @@
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-body {
-  font-family: 'Lucida Grande', 'Lucida Sans Unicode', arial, sans-serif;
-}
-
-.container {
-  width: 1140px;
-  max-width: 100%;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-textarea {
-  width: 100%;
-}

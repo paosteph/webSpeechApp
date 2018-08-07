@@ -19,6 +19,6 @@ export class NivelService{
 
   getNiveles() {
   let header = NivelService.getCommonHeaders();
-  return this.http.get("localhost:3000/nivel/listarTodosNiveles",{headers: header});
+  return this.http.get("localhost:3000/nivel/listarTodosNiveles");
    }
 }

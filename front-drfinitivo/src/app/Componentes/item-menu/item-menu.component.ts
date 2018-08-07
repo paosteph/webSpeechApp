@@ -12,7 +12,7 @@ export class ItemMenuComponent implements OnInit {
   rutaImagen="assets/img/SALUDOS.jpg";
 
   @Input()
-  nombreBotonIngresar;
+  nombreBotonIngresar="Ingresar";
 
   @Input()
   titulo;
