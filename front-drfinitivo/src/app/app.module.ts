@@ -40,6 +40,7 @@ import {RouterModule} from "@angular/router";
 import {ARREGLO_RUTAS} from "./app.routes";
 import { AdminComponent } from './Rutas/admin/admin.component';
 import { EliminarFraseComponent } from './Rutas/eliminar-frase/eliminar-frase.component';
+import {NivelService} from "../Servicio/nivel.service";
 
 @NgModule({
   declarations: [
@@ -92,7 +93,7 @@ import { EliminarFraseComponent } from './Rutas/eliminar-frase/eliminar-frase.co
       }
     )
   ],
-  providers: [CookieService,UsuarioService,],
+  providers: [CookieService,UsuarioService,NivelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

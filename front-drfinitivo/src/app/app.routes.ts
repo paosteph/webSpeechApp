@@ -67,8 +67,7 @@ export const ARREGLO_RUTAS: Routes = [
     path: "testGratis"
 
   },
-
-/*  {
+  {
     redirectTo:"/home/menuP",
     pathMatch:"full",
     path: "**"
@@ -77,6 +76,6 @@ export const ARREGLO_RUTAS: Routes = [
     redirectTo:"login",
     pathMatch:"full",
     path: ""
-  }*/
+  }
 
 ]
