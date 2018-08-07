@@ -115,6 +115,14 @@ export class NivelService {
 
     }
 
+    async buscarNivel(palabraBuscada){
+        if (palabraBuscada){
+            return await this.nivelRepository.find({nombre: Like("%"+palabraBuscada+"%")});
+        }else
+            return await this.nivelRepository.find();
+
+    }
+
     calificarImagen(fraseDicha:String,fraseCorrecta:String){
         const palabrasCorrectas=fraseCorrecta.split(" ");
         const calificaciones:number[]=palabrasCorrectas.map((palabra)=>{

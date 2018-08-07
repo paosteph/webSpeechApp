@@ -1,3 +1,27 @@
-<p>
-  eliminar-frase works!
-</p>
+<div class="col-sm-12">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <app-subtitulo sutitulo="Busque y seleccione una frase"></app-subtitulo>
+    <form class="form-check-inline col-sm-12"
+          #formulario="ngForm">
+      <input class="form-control mr-sm-3" type="search" placeholder="Buscar Frase" size="100"
+             [(ngModel)]="palabraBusqueda"
+             aria-label="Buscar Frase"
+             name="palabraBusqueda"
+             (keypress)="buscarFrase(formulario)">
+    </form>
+    <div class="col-sm-12 card" *ngFor="let frase of frases;let i=index;">
+      <p class="frase2" *ngIf="!frase.seleccionado; else elseBlock" (click)="seleccionarFrase(i)">{{frase.texto}}</p>
+      <ng-template #elseBlock>
+        <p class="frase" (click)="seleccionarFrase(i)">{{frase.texto}}</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12">
+  <br>
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <app-boton nombreBoton="Eliminar nivel" (darClic)="eliminarNivel(idNivel)"></app-boton>
+  </div>
+</div>

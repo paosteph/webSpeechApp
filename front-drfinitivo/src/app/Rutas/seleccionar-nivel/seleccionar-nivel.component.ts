@@ -1,28 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-eliminar-nivel',
-  templateUrl: './eliminar-nivel.component.html',
-  styleUrls: ['./eliminar-nivel.component.css']
+  selector: 'app-seleccionar-nivel',
+  templateUrl: './seleccionar-nivel.component.html',
+  styleUrls: ['./seleccionar-nivel.component.css']
 })
-export class EliminarNivelComponent implements OnInit {
+export class SeleccionarNivelComponent implements OnInit {
 
   constructor(private httpClient:HttpClient,
               private router:Router) { }
 
   niveles;
-  idNivel;
-  index;
+
   ngOnInit() {
     this.httpClient.get("http://localhost:3000/nivel/listarTodosNiveles").subscribe((niveles:any)=>{
       this.niveles=niveles;
     });
   }
+
   seleccionarNivel(index){
-    this.idNivel=this.niveles[index].id;
-    this.index=index;
+    this.router.navigate(["Admin","frasesNivel",this.niveles[index]]);
   }
 
   async buscarNivel(formulario){
@@ -37,13 +36,5 @@ export class EliminarNivelComponent implements OnInit {
 
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
-  }
-
-  eliminarNivel(id){
-    const eliminarNivel = this.httpClient.post("http://localhost:3000/nivel/eliminarNivel",{idNivel:id});
-    eliminarNivel.subscribe((mensaje)=>{
-      console.log(mensaje);
-      this.niveles.splice(this.index,1);
-    });
   }
 }

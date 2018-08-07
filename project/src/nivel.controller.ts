@@ -53,6 +53,11 @@ export class NivelController{
         return await this.nivelService.buscarFrases(palabraBuscada);
     }
 
+    @Post('buscarNivel')
+    private async buscarNivel(@Body('palabraBuscada')palabraBuscada){
+        return await this.nivelService.buscarNivel(palabraBuscada);
+    }
+
     @Get('listarTodosNiveles')
     async listarTodos(
         @Res() response,

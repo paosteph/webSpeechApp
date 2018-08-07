@@ -40,6 +40,7 @@ import {RouterModule} from "@angular/router";
 import {ARREGLO_RUTAS} from "./app.routes";
 import { AdminComponent } from './Rutas/admin/admin.component';
 import { EliminarFraseComponent } from './Rutas/eliminar-frase/eliminar-frase.component';
+import { SeleccionarNivelComponent } from './Rutas/seleccionar-nivel/seleccionar-nivel.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { EliminarFraseComponent } from './Rutas/eliminar-frase/eliminar-frase.co
     LoginComponent,
     FraseComponent,
     AdminComponent,
-    EliminarFraseComponent
+    EliminarFraseComponent,
+    SeleccionarNivelComponent
   ],
   imports: [
     BrowserModule,MatButtonModule, MatCheckboxModule,

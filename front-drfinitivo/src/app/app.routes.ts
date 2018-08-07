@@ -12,6 +12,7 @@ import {TestComponent} from "./Rutas/test/test.component";
 import {AdminComponent} from "./Rutas/admin/admin.component";
 import {EliminarFraseComponent} from "./Rutas/eliminar-frase/eliminar-frase.component";
 import {HomeComponent} from "./Rutas/home/home.component";
+import {SeleccionarNivelComponent} from "./Rutas/seleccionar-nivel/seleccionar-nivel.component";
 
 export const ARREGLO_RUTAS: Routes = [
   {component:LoginComponent,
@@ -42,6 +43,10 @@ export const ARREGLO_RUTAS: Routes = [
       {
         component: EliminarFraseComponent,
         path: "eliminarFrase"
+      },
+      {
+        component: SeleccionarNivelComponent,
+        path: "seleccionarNivel"
       }]
   },
 

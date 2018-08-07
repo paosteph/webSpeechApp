@@ -16,13 +16,11 @@ export class FrasesANivelComponent implements OnInit {
   frasesOtrasMostradas=[];
 
   constructor(private httpClient:HttpClient,
-              /*private activatedRoute:ActivatedRoute*/) { }
+              private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
-    /*
     const $obtenerParametros = this.activatedRoute.params;
     $obtenerParametros.subscribe((data:any)=>this.idNivel=data['idNivel']);
-    */
     this.cargarFrases();
   }
 

@@ -1,0 +1,8 @@
+.frase{
+  font-weight: bolder;
+  cursor: pointer;
+}
+.frase2:hover{
+  font-weight: lighter;
+  cursor: pointer;
+}

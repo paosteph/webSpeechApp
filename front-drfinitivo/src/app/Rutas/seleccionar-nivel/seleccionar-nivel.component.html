@@ -1,0 +1,16 @@
+<div class="col-sm-12">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <app-subtitulo sutitulo="Busque y seleccione un nivel"></app-subtitulo>
+    <form class="form-check-inline col-sm-12"
+          #formulario="ngForm">
+      <input class="form-control mr-sm-3" type="search"  size="100"
+             [(ngModel)]="palabraBusqueda"
+             name="palabraBusqueda"
+             (keypress)="buscarNivel(formulario)">
+    </form>
+    <div class="col-sm-12 card" *ngFor="let nivel of Niveles;let i=index;">
+      <p class="frase2"  (click)="seleccionarNivel(i)">{{nivel.nombre}}</p>
+    </div>
+  </div>
+</div>

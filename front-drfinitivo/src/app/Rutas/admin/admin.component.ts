@@ -12,12 +12,14 @@ export class AdminComponent implements OnInit {
   constructor(private cookieService: CookieService,
               private  router:Router) { }
 
+
+  esAdmin;
   ngOnInit() {
 
-    const esAdmin = this.cookieService.get('cookieEsAdmin');
-    console.log('esAdmin',esAdmin);
+    this.esAdmin = this.cookieService.get('cookieEsAdmin');
+    console.log('esAdmin',this.esAdmin);
 
-    if(!esAdmin){
+    if(!this.esAdmin){
       console.log("no fue autorizado volviendo a menu")
       this.router.navigate(["home","menuP"]);
     }
