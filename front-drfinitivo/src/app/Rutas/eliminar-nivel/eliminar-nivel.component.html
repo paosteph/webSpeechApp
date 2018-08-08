@@ -10,7 +10,7 @@
              (keypress)="buscarNivel(formulario)">
     </form>
     <div class="col-sm-12 card" *ngFor="let nivel of niveles;let i=index;">
-      <p class="frase2" *ngIf="i=index; else elseBlock" (click)="seleccionarNivel(i)">{{nivel.nombre}}</p>
+      <p class="frase2" *ngIf="i===indice; else elseBlock" (click)="seleccionarNivel(i)">{{nivel.nombre}}</p>
       <ng-template #elseBlock>
         <p class="frase" (click)="seleccionarNivel(i)">{{nivel.nombre}}</p>
       </ng-template>
