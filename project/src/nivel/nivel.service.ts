@@ -3,6 +3,7 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {NivelEntity} from "./nivel.entity";
 import {Like, Repository} from "typeorm";
 import {Frase} from "./frase.entity";
+import {UsuarioEntity} from "../usuario/usuario.entity";
 
 @Injectable()
 export class NivelService {
@@ -20,7 +21,9 @@ export class NivelService {
     constructor(@InjectRepository(NivelEntity)
                 private readonly nivelRepository: Repository<NivelEntity>,
                 @InjectRepository(Frase)
-                private readonly fraseRepository: Repository<Frase>){}
+                private readonly fraseRepository: Repository<Frase>,
+                @InjectRepository(UsuarioEntity)
+                private readonly usuarioRepository: Repository<UsuarioEntity>){}
 
     crearNiveles() {
         for(var niveles in this.ArregloNiveles) {
@@ -155,10 +158,11 @@ export class NivelService {
         return await this.nivelRepository.find();
     }
 
-    async crearNivel(nombre,descripcion){
+    async crearNivel(nombre,descripcion,administrador){
         const nivel= new NivelEntity();
         nivel.nombre=nombre;
         nivel.descripcion=descripcion;
+        nivel.administrador=await  this.usuarioRepository.findOne(administrador);
         await this.nivelRepository.save(nivel);
 
         return nivel

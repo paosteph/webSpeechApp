@@ -13,15 +13,13 @@ export class EliminarNivelComponent implements OnInit {
               private router:Router) { }
 
   niveles;
-  idNivel;
-  index;
+  index=-1;
   ngOnInit() {
     this.httpClient.get("http://localhost:3000/nivel/listarTodosNiveles").subscribe((niveles:any)=>{
       this.niveles=niveles;
     });
   }
   seleccionarNivel(index){
-    this.idNivel=this.niveles[index].id;
     this.index=index;
   }
 
@@ -40,7 +38,8 @@ export class EliminarNivelComponent implements OnInit {
   }
 
   eliminarNivel(id){
-    const eliminarNivel = this.httpClient.post("http://localhost:3000/nivel/eliminarNivel",{idNivel:id});
+    const eliminarNivel = this.httpClient.post("http://localhost:3000/nivel/eliminarNivel",
+      {idNivel:this.niveles[this.index].id});
     eliminarNivel.subscribe((mensaje)=>{
       console.log(mensaje);
       this.niveles.splice(this.index,1);

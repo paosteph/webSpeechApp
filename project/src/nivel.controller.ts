@@ -75,8 +75,9 @@ export class NivelController{
 
 
     @Post('crear')
-    private async crearNuevo(@Body('nombre')nombre, @Body('descripcion')descripcion){
-        return await this.nivelService.crearNivel(nombre,descripcion);
+    private async crearNuevo(@Body('nombre')nombre, @Body('descripcion')descripcion
+    ,@Body('idAdministrador')idAdministrador){
+        return await this.nivelService.crearNivel(nombre,descripcion,idAdministrador);
     }
 
 

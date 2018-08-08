@@ -21,7 +21,7 @@ export class SeleccionarNivelComponent implements OnInit {
   }
 
   seleccionarNivel(index){
-    this.router.navigate(["Admin","frasesNivel",this.niveles[index]]);
+    this.router.navigate(["Admin","frasesNivel",this.niveles[index].id]);
   }
 
   async buscarNivel(formulario){
@@ -31,6 +31,7 @@ export class SeleccionarNivelComponent implements OnInit {
     const $buscarNivel = this.httpClient.post("http://localhost:3000/nivel/buscarNivel",{palabraBuscada:palabraBusqueda});
     $buscarNivel.subscribe((niveles:any)=>{
       this.niveles=niveles;
+      console.log(niveles);
     });
   }
 

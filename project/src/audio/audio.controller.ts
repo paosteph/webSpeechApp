@@ -24,12 +24,12 @@ export class AudioController {
         textToSpeech.synthesize(synthesizeParams).on('error', function(error) {
             console.log(error);
         }).pipe(
-            fs.createWriteStream('audio/hello_world.wav')
+            fs.createWriteStream('src/audio/hello_world.wav')
         );
 
         //this.delay(3000);
 
-        const path = 'audios/hello_world.wav';
+        const path = 'src/audios/hello_world.wav';
         const stat = fs.statSync(path);
         const fileSize = stat.size;
         const head = {
@@ -38,6 +38,7 @@ export class AudioController {
         };
         res.writeHead(200, head);
         fs.createReadStream(path).pipe(res);
+        res.send("hola");
 
     }
 
