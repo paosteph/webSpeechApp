@@ -9,12 +9,16 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private cookieService: CookieService) { }
+  constructor(private cookieService: CookieService,
+              private router:Router) { }
   esAdmin;
 
   ngOnInit() {
     this.esAdmin = this.cookieService.get('cookieEsAdmin');
     console.log('esAdmin',this.esAdmin);
+    if(this.esAdmin===undefined){
+      this.router.navigate(["login"]);
+    }
   }
 
 }
