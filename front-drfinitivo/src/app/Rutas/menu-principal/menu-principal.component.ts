@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Usuario} from "../../../clases/usuario";
-import {HttpClient} from "@angular/common/http";
-import {NivelService} from "../../../Servicio/nivel.service";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+
+import {CookieService} from "ngx-cookie-service";
+import {practica} from "../../../clases/practica";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-menu-principal',
@@ -10,15 +13,38 @@ import {NivelService} from "../../../Servicio/nivel.service";
 })
 export class MenuPrincipalComponent implements OnInit {
   niveles;
+  fecha;
+  nivel;
+  usuario;
+  constructor(private _http:HttpClient,private cookieService: CookieService,private router:Router) { }
 
-  constructor(private _http:HttpClient) { }
-nombreNivel='Comenzar'
   ngOnInit() {
     this._http.get("http://localhost:3000/nivel/listarTodosNiveles").subscribe((niveles:any[])=>{
       this.niveles=niveles;
-    });
-    }
 
+    });
+
+    this.usuario=this.cookieService.get( 'cookieId');
+    console.log(this.usuario);
+  }
+
+  crearPractica(idnivel){
+    let fechaActual = new Date();
+    let dia = fechaActual.getDate().toString();
+    let mes = (fechaActual.getMonth() + 1).toString();
+    let anio = fechaActual.getFullYear().toString();
+    this.fecha = anio + "/" + mes + "/" + dia;
+
+
+    this._http.post("http://localhost:3000/Practica/crearPractica",
+      {fecha:this.fecha,porcentajeExito:0,usuario:this.cookieService.get("cookieId"),nivel:idnivel
+      }).subscribe((mensaje:any)=>{
+      console.log(mensaje);
+        //this.router.navigate(["login"]);
+
+    },(error)=>console.log(error));
+  }
 
 
 }
+

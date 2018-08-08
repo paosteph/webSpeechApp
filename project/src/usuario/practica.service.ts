@@ -2,6 +2,7 @@ import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Practica} from "./practica.entity";
 import {Repository} from "typeorm";
+import {UsuarioEntity} from "./usuario.entity";
 
 @Injectable()
 export class PracticaService{
@@ -36,6 +37,13 @@ export class PracticaService{
             .getMany()
     }
 
-
+    async crearUnaPractica(fecha, porcentajeExito,usuario,nivel){
+        const practica = new Practica();
+        practica.fecha = fecha;
+        practica.porcentajeExito = porcentajeExito;
+        practica.usuario=usuario;
+        practica.nivel=nivel;
+        return await this._practicaRepositorio.save(practica);
+    }
 
 }

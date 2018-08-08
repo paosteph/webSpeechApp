@@ -8,6 +8,7 @@ export class PracticaController{
         private readonly _practicaService: PracticaService
     ){}
 
+
     @Post('obtenerTotal')
     async obtenerTotal(@Body('idUsuario') idUsuario){
         return await  this._practicaService.obtenerTotalHechasPorUsuario(idUsuario);
@@ -21,5 +22,13 @@ export class PracticaController{
     @Post('tresPeores')
     async obtenerTresPeores(@Body('idUsuario') idUsuario){
         return await this._practicaService.obtenerTresPeoresPracticas(idUsuario);
+    }
+
+    @Post('crearPractica')
+    async crearUno(
+        @Body('fecha') fecha, @Body('porcentajeExito') porcentajeExito, @Body('usuario') usuario,
+        @Body('nivel') nivel
+    ){
+        return this._practicaService.crearUnaPractica(fecha,porcentajeExito,usuario,nivel);
     }
 }
