@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.esAdmin = this.cookieService.get('cookieEsAdmin');
     console.log('esAdmin',this.esAdmin);
-    if(this.esAdmin===undefined){
+    if(!(this.esAdmin==true||this.esAdmin==false)){
       this.router.navigate(["login"]);
     }
   }
