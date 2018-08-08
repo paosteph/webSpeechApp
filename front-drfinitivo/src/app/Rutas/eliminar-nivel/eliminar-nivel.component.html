@@ -7,6 +7,7 @@
           #formulario="ngForm">
       <input class="form-control mr-sm-3" type="search" size="100"
              [(ngModel)]="palabraBusqueda"
+             placeholder="Buscar"
              name="palabraBusqueda"
              (keypress)="buscarNivel(formulario)">
     </form>
@@ -18,7 +19,8 @@
     </div>
   </div>
 </div>
-<div class="col-sm-12">
+<br>
+<div class="row">
   <br>
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
