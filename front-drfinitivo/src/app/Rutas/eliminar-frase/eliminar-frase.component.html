@@ -1,7 +1,8 @@
-<div class="col-sm-12">
+<div class="col-sm-row">
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
     <app-subtitulo sutitulo="Busque y seleccione una frase"></app-subtitulo>
+    <br>
     <form class="form-check-inline col-sm-12"
           #formulario="ngForm">
       <input class="form-control mr-sm-3" type="search" placeholder="Buscar Frase" size="100"
@@ -11,7 +12,7 @@
              (keypress)="buscarFrase(formulario)">
     </form>
     <div class="col-sm-12 card" *ngFor="let frase of frases;let i=index;">
-      <p class="frase2" *ngIf="!frase.seleccionado; else elseBlock" (click)="seleccionarFrase(i)">{{frase.texto}}</p>
+      <p class="frase2" *ngIf="i!==indice; else elseBlock" (click)="seleccionarFrase(i)">{{frase.texto}}</p>
       <ng-template #elseBlock>
         <p class="frase" (click)="seleccionarFrase(i)">{{frase.texto}}</p>
       </ng-template>
@@ -22,6 +23,6 @@
   <br>
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
-    <app-boton nombreBoton="Eliminar nivel" (darClic)="eliminarNivel(idNivel)"></app-boton>
+    <app-boton nombreBoton="Eliminar nivel" (darClic)="eliminarFrase()"></app-boton>
   </div>
 </div>

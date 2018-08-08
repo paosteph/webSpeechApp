@@ -81,4 +81,13 @@ export class NivelController{
     }
 
 
+    @Post('eliminarNivel')
+    async eliminarNivel(@Body('idNivel')idNivel){
+        return await this.nivelService.elminarNivel(idNivel);
+    }
+
+    @Post('eliminarFrase')
+    async eliminarFrase(@Body('idFrase')idFrase){
+        return await this.nivelService.elminarFrase(idFrase);
+    }
 }

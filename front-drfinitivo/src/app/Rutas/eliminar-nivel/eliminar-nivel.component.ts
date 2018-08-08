@@ -24,6 +24,7 @@ export class EliminarNivelComponent implements OnInit {
   }
 
   async buscarNivel(formulario){
+    this.indice=-1;
     await this.delay(100);
     const controles = formulario.controls;
     const palabraBusqueda = controles.palabraBusqueda.value;
@@ -37,7 +38,7 @@ export class EliminarNivelComponent implements OnInit {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
-  eliminarNivel(id){
+  eliminarNivel(){
     const eliminarNivel = this.httpClient.post("http://localhost:3000/nivel/eliminarNivel",
       {idNivel:this.niveles[this.indice].id});
     eliminarNivel.subscribe((mensaje)=>{
