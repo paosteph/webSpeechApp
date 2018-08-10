@@ -4,6 +4,8 @@ import {NivelEntity} from "./nivel.entity";
 import {Like, Repository} from "typeorm";
 import {Frase} from "./frase.entity";
 import {UsuarioEntity} from "../usuario/usuario.entity";
+let TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
+let fs = require('fs');
 
 @Injectable()
 export class NivelService {
@@ -64,10 +66,35 @@ export class NivelService {
                 existeFrase=true;
         });
         if (!existeFrase) {
-            this.fraseRepository.save(frase);
+            frase.ruta="";
+            await this.fraseRepository.save(frase);
+            const ruta='src/audio/frase'+frase.id+'.wav';
+            frase.ruta=ruta;
+            await this.fraseRepository.save(frase);
             const nivel = await this.nivelRepository.findOne(idNivel, {relations: ["frases"]});
             nivel.frases.push(frase);
             this.nivelRepository.save(nivel);
+
+
+            /**************CREAMOS ARCHIVO AUDIO FRASE****************/
+            let textToSpeech = new TextToSpeechV1({
+                username: '2eea673c-8685-4d42-b394-fc155a83c0d4',
+                password: 'PEj30aRN3rhR'
+            });
+
+            let synthesizeParams = {
+                text: texto,
+                accept: 'audio/wav',
+                voice: 'en-US_AllisonVoice'
+            };
+
+            // Pipe the synthesized text to a file.
+            textToSpeech.synthesize(synthesizeParams).on('error', function(error) {
+                console.log(error);
+            }).pipe(
+                fs.createWriteStream(ruta)
+            );
+
 
             return {mensaje: "frases creada"}
         } else {
@@ -153,5 +180,10 @@ export class NivelService {
 
         return nivel
 
+    }
+
+    async obtenerUnaFrase(idFrase){
+        const frase = await this.fraseRepository.findOne(idFrase);
+        return frase;
     }
 }

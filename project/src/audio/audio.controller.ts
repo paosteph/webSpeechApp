@@ -1,9 +1,13 @@
 import {Body, Controller, Post, Res} from "@nestjs/common";
+import {NivelService} from "../nivel/nivel.service";
+
 let TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 let fs = require('fs');
 
 @Controller('audio')
 export class AudioController {
+
+    constructor(private readonly _nivelServicio: NivelService){}
 
     @Post('generarAudio')
     generarAudio(@Body('texto')texto,@Res() res){
@@ -39,6 +43,24 @@ export class AudioController {
         res.writeHead(200, head);
         fs.createReadStream(path).pipe(res);
         res.send("hola");
+
+    }
+
+    @Post('obtener')
+    async obtenerAudioFrase(@Body('idFrase') idFrase, @Res() res){
+        const frase = await this._nivelServicio.obtenerUnaFrase(idFrase);
+
+        const path = frase.ruta;
+        const stat = fs.statSync(path);
+        const fileSize = stat.size;
+        const head = {
+            'Content-Length': fileSize,
+            'Content-Type': 'audio/wav'
+        };
+        res.writeHead(200, head);
+        const audio = fs.createReadStream(path).pipe(res);
+
+        return res.send(audio);
 
     }
 

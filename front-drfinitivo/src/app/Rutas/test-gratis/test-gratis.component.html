@@ -1,50 +1,50 @@
-<br>
-<app-titulo
- [titulo]="titulo"
-></app-titulo>
-<br>
-<div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-8 card mensaje">
-    <h6>Hola, te invitamos a probar nuestra aplicación.</h6>
-    <h6>Presiona Grabar habla en inglés y presiona Parar. En Resultado observa si pronunciaste correstcamente</h6>
-  </div>
-  <div class="col-sm-2"></div>
-</div>
-<br>
-<div class="row">
-  <div class="col-sm-3 ">
-    <button type="button" class="btn btn-outline-success btn-block boton"
-            *ngIf="!grabando; else parar" (click)="empezarGrabacion()">Grabar</button>
-    <ng-template #parar>
-      <button type="button" class="btn btn-outline-danger btn-block boton"
-              (click)="finalizarGrabacion()">Parar</button>
-    </ng-template>
-  </div>
-</div>
-<br><br>
-<div class="row">
-  <div class="col-sm-4">
-    <app-subtitulo
-    [sutitulo]="subtResultado"
-    ></app-subtitulo>
-  </div>
-</div>
-<br>
-<app-practica *ngIf="finGrabacion"
-              [loQueDijo]="loQueDijo"
-              [loCorrecto]="loCorrecto"
-              [resultado]="resultado"
-></app-practica>
-<br><br><br>
-<div class="row">
-  <div class="col-sm-8" style="text-align: right;">
-    <h6 class="mytext2">Regístrate y aprovecha más funcionalidades</h6>
-  </div>
-  <div class="col-sm-4">
-    <app-boton
-      [nombreBoton]="botonRegistrase"
-    ></app-boton>
-  </div>
-</div>
-<br><br>
+<!--<br>-->
+<!--<app-titulo-->
+ <!--[titulo]="titulo"-->
+<!--&gt;</app-titulo>-->
+<!--<br>-->
+<!--<div class="row">-->
+  <!--<div class="col-sm-2"></div>-->
+  <!--<div class="col-sm-8 card mensaje">-->
+    <!--<h6>Hola, te invitamos a probar nuestra aplicación.</h6>-->
+    <!--<h6>Presiona Grabar habla en inglés y presiona Parar. En Resultado observa si pronunciaste correstcamente</h6>-->
+  <!--</div>-->
+  <!--<div class="col-sm-2"></div>-->
+<!--</div>-->
+<!--<br>-->
+<!--<div class="row">-->
+  <!--<div class="col-sm-3 ">-->
+    <!--<button type="button" class="btn btn-outline-success btn-block boton"-->
+            <!--*ngIf="!grabando; else parar" (click)="empezarGrabacion()">Grabar</button>-->
+    <!--<ng-template #parar>-->
+      <!--<button type="button" class="btn btn-outline-danger btn-block boton"-->
+              <!--(click)="finalizarGrabacion()">Parar</button>-->
+    <!--</ng-template>-->
+  <!--</div>-->
+<!--</div>-->
+<!--<br><br>-->
+<!--<div class="row">-->
+  <!--<div class="col-sm-4">-->
+    <!--<app-subtitulo-->
+    <!--[sutitulo]="subtResultado"-->
+    <!--&gt;</app-subtitulo>-->
+  <!--</div>-->
+<!--</div>-->
+<!--<br>-->
+<!--<app-practica *ngIf="finGrabacion"-->
+              <!--[loQueDijo]="loQueDijo"-->
+              <!--[loCorrecto]="loCorrecto"-->
+              <!--[resultado]="resultado"-->
+<!--&gt;</app-practica>-->
+<!--<br><br><br>-->
+<!--<div class="row">-->
+  <!--<div class="col-sm-8" style="text-align: right;">-->
+    <!--<h6 class="mytext2">Regístrate y aprovecha más funcionalidades</h6>-->
+  <!--</div>-->
+  <!--<div class="col-sm-4">-->
+    <!--<app-boton-->
+      <!--[nombreBoton]="botonRegistrase"-->
+    <!--&gt;</app-boton>-->
+  <!--</div>-->
+<!--</div>-->
+<!--<br><br>-->

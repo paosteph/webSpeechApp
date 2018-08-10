@@ -11,12 +11,12 @@ export class HomeComponent implements OnInit {
 
   constructor(private cookieService: CookieService,
               private router:Router) { }
-  esAdmin;
+  existeCookie;
 
   ngOnInit() {
-    this.esAdmin = this.cookieService.get('cookieEsAdmin');
-    console.log('esAdmin',this.esAdmin);
-    if(!(this.esAdmin==true||this.esAdmin==false)){
+    this.existeCookie = this.cookieService.check('cookieEsAdmin');
+
+    if(!this.existeCookie){
       this.router.navigate(["login"]);
     }
   }

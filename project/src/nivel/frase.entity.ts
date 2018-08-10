@@ -9,6 +9,9 @@ export class Frase{
     @Column('text')
     texto: string;
 
+    @Column('text')
+    ruta: string;
+
     @ManyToMany(type => NivelEntity, nivel => nivel.frases)
     @JoinTable()
     nivel: NivelEntity[];

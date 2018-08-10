@@ -30,7 +30,7 @@ export class PracticaController{
         return await this._practicaService.obtenerTresPeoresPracticas(idUsuario);
     }
 
-<<<<<<< HEAD
+
     @Post('calificarFrase')
     calificarFrase(@Body('fraseEscrita') fraseEscrita, @Body('fraseCorrecta') fraseCorrecta){
         return this._practicaService.calificarFrase(fraseEscrita, fraseCorrecta);
