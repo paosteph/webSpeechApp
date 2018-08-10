@@ -8,10 +8,12 @@ export class PracticaController{
         private readonly _practicaService: PracticaService
     ){}
 
+
     @Post('obtenerTodo')
     async obtenerTodo(@Body('idPractica') idPractica){
         return await this._practicaService.obtenerSuNivelYFrases(idPractica);
     }
+
 
     @Post('obtenerTotal')
     async obtenerTotal(@Body('idUsuario') idUsuario){
@@ -28,6 +30,7 @@ export class PracticaController{
         return await this._practicaService.obtenerTresPeoresPracticas(idUsuario);
     }
 
+<<<<<<< HEAD
     @Post('calificarFrase')
     calificarFrase(@Body('fraseEscrita') fraseEscrita, @Body('fraseCorrecta') fraseCorrecta){
         return this._practicaService.calificarFrase(fraseEscrita, fraseCorrecta);
@@ -38,5 +41,14 @@ export class PracticaController{
         return await this._practicaService.agregarPorcentajeExito(idPractica, porcentajeParcial);
     }
 
+
+
+    @Post('crearPractica')
+    async crearUno(
+        @Body('fecha') fecha, @Body('porcentajeExito') porcentajeExito, @Body('usuario') usuario,
+        @Body('nivel') nivel
+    ){
+        return this._practicaService.crearUnaPractica(fecha,porcentajeExito,usuario,nivel);
+    }
 
 }

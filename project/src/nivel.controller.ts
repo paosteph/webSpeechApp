@@ -75,9 +75,19 @@ export class NivelController{
 
 
     @Post('crear')
-    private async crearNuevo(@Body('nombre')nombre, @Body('descripcion')descripcion){
-        return await this.nivelService.crearNivel(nombre,descripcion);
+    private async crearNuevo(@Body('nombre')nombre, @Body('descripcion')descripcion
+    ,@Body('idAdministrador')idAdministrador){
+        return await this.nivelService.crearNivel(nombre,descripcion,idAdministrador);
     }
 
 
+    @Post('eliminarNivel')
+    async eliminarNivel(@Body('idNivel')idNivel){
+        return await this.nivelService.elminarNivel(idNivel);
+    }
+
+    @Post('eliminarFrase')
+    async eliminarFrase(@Body('idFrase')idFrase){
+        return await this.nivelService.elminarFrase(idFrase);
+    }
 }

@@ -18,7 +18,7 @@
       <app-item-menu
         [contenido]="niv.descripcion"
         [titulo]="niv.nombre"
-
+        (darclic)="crearPractica(niv.id)"
       >
       </app-item-menu>
     </div>
@@ -27,4 +27,8 @@
 </div>
 <br>
 <br>
+<div>
+  <button (click)="crearPractica(1)">:v</button>
+</div>
+
 

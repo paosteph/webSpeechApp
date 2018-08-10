@@ -1,26 +1,29 @@
-<div class="col-sm-12">
+<div class="row">
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
     <app-subtitulo sutitulo="Busque y seleccione un nivel"></app-subtitulo>
+    <br>
     <form class="form-check-inline col-sm-12"
           #formulario="ngForm">
       <input class="form-control mr-sm-3" type="search" size="100"
              [(ngModel)]="palabraBusqueda"
+             placeholder="Buscar"
              name="palabraBusqueda"
              (keypress)="buscarNivel(formulario)">
     </form>
-    <div class="col-sm-12 card" *ngFor="let nivel of Niveles;let i=index;">
-      <p class="frase2" *ngIf="!nivel.seleccionado; else elseBlock" (click)="seleccionarNivel(i)">{{nivel.nombre}}</p>
+    <div class="col-sm-12 card" *ngFor="let nivel of niveles;let i=index;">
+      <p class="frase2" *ngIf="i!==indice; else elseBlock" (click)="seleccionarNivel(i)">{{nivel.nombre}}</p>
       <ng-template #elseBlock>
         <p class="frase" (click)="seleccionarNivel(i)">{{nivel.nombre}}</p>
       </ng-template>
     </div>
   </div>
 </div>
-<div class="col-sm-12">
+<br>
+<div class="row">
   <br>
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
-    <app-boton nombreBoton="Eliminar nivel" (darClic)="eliminarNivel(idNivel)"></app-boton>
+    <app-boton nombreBoton="Eliminar nivel" (darClic)="eliminarNivel()"></app-boton>
   </div>
 </div>

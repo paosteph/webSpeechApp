@@ -13,19 +13,18 @@ export class EliminarNivelComponent implements OnInit {
               private router:Router) { }
 
   niveles;
-  idNivel;
-  index;
+  indice=-1;
   ngOnInit() {
     this.httpClient.get("http://localhost:3000/nivel/listarTodosNiveles").subscribe((niveles:any)=>{
       this.niveles=niveles;
     });
   }
   seleccionarNivel(index){
-    this.idNivel=this.niveles[index].id;
-    this.index=index;
+    this.indice=index;
   }
 
   async buscarNivel(formulario){
+    this.indice=-1;
     await this.delay(100);
     const controles = formulario.controls;
     const palabraBusqueda = controles.palabraBusqueda.value;
@@ -39,11 +38,12 @@ export class EliminarNivelComponent implements OnInit {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
-  eliminarNivel(id){
-    const eliminarNivel = this.httpClient.post("http://localhost:3000/nivel/eliminarNivel",{idNivel:id});
+  eliminarNivel(){
+    const eliminarNivel = this.httpClient.post("http://localhost:3000/nivel/eliminarNivel",
+      {idNivel:this.niveles[this.indice].id});
     eliminarNivel.subscribe((mensaje)=>{
       console.log(mensaje);
-      this.niveles.splice(this.index,1);
+      this.niveles.splice(this.indice,1);
     });
   }
 }

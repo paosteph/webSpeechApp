@@ -2,6 +2,7 @@ import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Practica} from "./practica.entity";
 import {Repository} from "typeorm";
+import {UsuarioEntity} from "./usuario.entity";
 
 @Injectable()
 export class PracticaService{
@@ -42,6 +43,7 @@ export class PracticaService{
             .getMany()
     }
 
+
     calificarFrase(fraseEscrita:String,fraseCorrecta:String){
         const palabrasCorrectas=fraseCorrecta.split(" ");
         const calificaciones:number[]=palabrasCorrectas.map((palabra)=>{
@@ -60,6 +62,16 @@ export class PracticaService{
         const practica = await this._practicaRepositorio.findOne(idPractica);
         practica.porcentajeExito = practica.porcentajeExito + porcentajeParcial;
         return practica.porcentajeExito;
+    }
+
+
+    async crearUnaPractica(fecha, porcentajeExito,usuario,nivel){
+        const practica = new Practica();
+        practica.fecha = fecha;
+        practica.porcentajeExito = porcentajeExito;
+        practica.usuario=usuario;
+        practica.nivel=nivel;
+        return await this._practicaRepositorio.save(practica);
     }
 
 
