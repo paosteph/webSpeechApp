@@ -8,61 +8,62 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 })
 export class PracticaComponent implements OnInit {
 
-  @Input() resultado: boolean;
-  @Input() loQueDijo;
-  @Input() loCorrecto;
+  @Input() practicaId;
+  @Input() textoBase;
+  fraseEscrita;
+  calificado = false;
 
-  private grabando: boolean;
-  private finGrabacion: boolean;
-  private oculto: boolean;
+  audio;
 
   constructor(private http: HttpClient){}
 
   ngOnInit() {
-    this.grabando = false;
-    this.finGrabacion = false;
-    this.oculto = false;
-
-    this.consultaTextToSpeech();
+    this.audio = this.cargarAudioFrase();
   }
 
-  empezarGrabacion(){
-    this.grabando = true;
-    this.finGrabacion = false;
+  cargarAudioFrase(){
+
   }
 
-  finalizarGrabacion(){
-    this.finGrabacion = true;
-    this.grabando = false;
-    this.oculto = true;
+  calificarFraseUsuario(fraseUsuario){
+    const controles = fraseUsuario.controls;
+    this.fraseEscrita = controles.frase.value;
+
+    this.calificarFrase(this.fraseEscrita, this.textoBase);
+
   }
 
-  consultaTextToSpeech(){
-    const url = "https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize";
-    const body = {
-      "text":"bye world"
-    };
-    const headers = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Basic MmVlYTY3M2MtODY4NS00ZDQyLWIzOTQtZmMxNTVhODNjMGQ0OlBFajMwYVJOM3JoUg==',
-        'Accept': 'audio/wav'
-      })
-    };
-    // let headers = new HttpHeaders();
-    // headers.append('Content-Type',  'application/json' );
-    // headers.append('Authorization','Basic MmVlYTY3M2MtODY4NS00ZDQyLWIzOTQtZmMxNTVhODNjMGQ0OlBFajMwYVJOM3JoUg==');
-    // headers.append('Accept', 'audio/wav');
-
-    const request$ = this.http.post(url, body, headers);
+  calificarFrase(fraseEscrita, fraseCorrecta){
+    const url = "http:localhost:3000/Practica/calificarFrase";
+    const request$ = this.http.post(url,{
+      fraseEscrita: fraseEscrita,
+      fraseCorrecta: fraseCorrecta
+    });
     request$.subscribe(
-      (audio:any)=>{
-        console.log("Audio", audio);
+      (calificacion:any) => {
+        this.calificado = true;
+        console.log(calificacion);
+        // acumulo porcentaje exito
+        this.agregarCalificacionParcial(calificacion);
+
       },
-      (error)=>{
-        console.log("Error :(", error);
-      }
+      (error) => {console.log(error)}
     );
   }
+
+  agregarCalificacionParcial(calificacionParcial){
+    const url = "http:localhost:3000/Practica/agregarPorcentajeExito";
+    const request$ = this.http.post(url,{
+      idPractica: this.practicaId,
+      porcentajeParcial: calificacionParcial
+    });
+    request$.subscribe(
+      (porcentajeAcumulado) => {
+        console.log(porcentajeAcumulado);
+      },
+      (error) => {console.log(error)}
+    );
+  }
+
 
 }

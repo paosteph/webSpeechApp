@@ -10,6 +10,12 @@ export class PracticaService{
         private readonly _practicaRepositorio: Repository<Practica>
     ){}
 
+    async obtenerSuNivelYFrases(idPractica){
+        return await this._practicaRepositorio.findOne(idPractica, {
+            relations: ['nivel','nivel.frases']
+        });
+    }
+
     async obtenerTotalHechasPorUsuario(idUsuario){
         return await this._practicaRepositorio.createQueryBuilder('practica')
             .select("COUNT(practica.id)", "totalPracticas")
@@ -36,6 +42,25 @@ export class PracticaService{
             .getMany()
     }
 
+    calificarFrase(fraseEscrita:String,fraseCorrecta:String){
+        const palabrasCorrectas=fraseCorrecta.split(" ");
+        const calificaciones:number[]=palabrasCorrectas.map((palabra)=>{
+            if(fraseEscrita.toUpperCase().indexOf(palabra.toUpperCase())!==-1)
+                return 1;
+            else
+                return 0;
+        });
+        const calificacion= calificaciones.reduce((calificacionAnterior, calificacionActual)=>{
+            return calificacionAnterior+calificacionActual})/calificaciones.length;
+
+        return calificacion;
+    }
+
+    async agregarPorcentajeExito(idPractica, porcentajeParcial){
+        const practica = await this._practicaRepositorio.findOne(idPractica);
+        practica.porcentajeExito = practica.porcentajeExito + porcentajeParcial;
+        return practica.porcentajeExito;
+    }
 
 
 }

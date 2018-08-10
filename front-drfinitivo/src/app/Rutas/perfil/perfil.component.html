@@ -36,19 +36,14 @@
         <th>Prácticas Hechas</th>
         <td>{{totalPracticas.totalPracticas}}</td>
       </tr>
-      <!--<tr>-->
-        <!--<th>Porcentaje Éxito</th>-->
-        <!--<td>{{porcentajeExito}}</td>-->
-      <!--</tr>-->
-      <!--<tr>-->
-        <!--<th>Prácticas exitosas</th>-->
-        <!--<td>{{practicasExitosas}}</td>-->
-      <!--</tr>-->
       </tbody>
     </table>
     <br>
     <h5>Mejores prácticas</h5>
-    <table class="table table-hover">
+    <table class="table table-hover" *ngIf="practicasMejores.length !== 0; else elseBlock">
+      <ng-template #elseBlock>
+        <h3>No registra prácticas aún</h3>
+      </ng-template>
       <thead>
       <tr>
         <th scope="col">#</th>
@@ -69,7 +64,10 @@
 
     <br>
     <h5>Peores prácticas</h5>
-    <table class="table table-hover">
+    <table class="table table-hover" *ngIf="practicasPeores.length!==0; else elseBlock">
+      <ng-template #elseBlock>
+        <h3>No registra prácticas aún</h3>
+      </ng-template>
       <thead>
       <tr>
         <th scope="col">#</th>

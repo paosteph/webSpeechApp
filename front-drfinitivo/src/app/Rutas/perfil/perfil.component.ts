@@ -33,14 +33,12 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit() {
     // cookie del usuario
-    //this.idUsuario = this.cookieService.get('usuarioId');
-    this.idUsuario = "1";
+    this.idUsuario = this.cookieService.get('cookieId');
 
     this.titulo = "Mi perfil";
     this.subtRecord = "Records";
     this.subtProgreso = "Progreso";
     this.botonResumen = "Ver resumen prácticas";
-    //this.nombre = "Juanito Alimaña";
 
     this.obtenerUsuario();
     this.obtenerTotalPracticas();

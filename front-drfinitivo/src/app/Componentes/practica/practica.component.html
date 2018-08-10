@@ -1,22 +1,41 @@
+<br>
 <div class="row">
-  <div class="col-sm-8 card">
-    <div class="card-body ">
-      <h5 class="card-title">{{palabraFrase}}</h5>
-    </div>
+  <div class="col-sm-6">
+    <audio controls>
+      <!--<source src="horse.ogg" type="audio/ogg">-->
+      <!--<source src="horse.mp3" type="audio/mpeg">-->
+      <source src={{audio}} type="audio/wav">
+    </audio>
   </div>
-  <div class="col-sm-1"></div>
-  <div class="col-sm-3" *ngIf="!oculto">
-    <button type="button" class="btn btn-outline-success btn-block boton"
-            *ngIf="!grabando; else parar" (click)="empezarGrabacion()">Grabar</button>
-    <ng-template #parar>
-      <button type="button" class="btn btn-outline-danger btn-block boton"
-              (click)="finalizarGrabacion()">Parar</button>
-    </ng-template>
+  <div class="col-sm-12">
+    <form
+      (ngSubmit)="calificarFraseUsuario(fraseUsuario)"
+      #fraseUsuario="ngForm"
+    >
+      <div class="form-group">
+        <label for="exampleInputEmail1">¿Qué escuchó?</label>
+        <input type="frase" class="form-control" id="exampleInputEmail1" aria-describedby="phraseHelp" placeholder="Ingrese la frase"
+               [(ngModel)]="email"
+               name="frase"
+               required
+               #frase="ngModel"
+        >
+        <div
+          class="alert alert-warning"
+          role="alert"
+          *ngIf="frase.errors !== null">
+          <p *ngIf="frase.errors.required">Debe ingresar una frase</p>
+        </div>
+      </div>
+      <button [disabled]="fraseUsuario.invalid"
+              type="submit" class="btn btn-primary">Calificar</button>
+    </form>
   </div>
+
 </div>
 <br><br>
 <div class="row">
-  <div class="col-sm-4" *ngIf="finGrabacion">
+  <div class="col-sm-4" *ngIf="calificado">
     <app-subtitulo
       [sutitulo]="subtResultado"
     ></app-subtitulo>
@@ -28,15 +47,15 @@
     <table class="table table-borderless ">
       <tbody>
       <tr>
-        <th>Lo que pronunciaste</th>
+        <th>Lo que escuchaste</th>
         <td>
-          <div class="card border-white palabra">{{loQueDijo}}</div>
+          <div class="card border-white palabra">{{fraseEscrita}}</div>
         </td>
       </tr>
       <tr>
         <th>Lo correcto</th>
         <td>
-          <div class="card border-white palabra">{{loCorrecto}}</div>
+          <div class="card border-white palabra">{{textoBase}}</div>
         </td>
       </tr>
       <tr>
@@ -51,4 +70,3 @@
   </div>
 </div>
 
-<!--<iframe src="http://localhost:4400" frameborder="0" width="300" height="500"></iframe>-->
