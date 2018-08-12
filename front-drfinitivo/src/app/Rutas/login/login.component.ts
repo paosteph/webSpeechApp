@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Title} from "@angular/platform-browser";
 import {Usuario} from "../../../clases/usuario";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   contrasena;
   botonRegistro;
   constructor(private cookieService: CookieService,private _http:HttpClient, private fb: FormBuilder,
-              title: Title) {
+              title: Title,private router:Router) {
     title.setTitle('Login');
     this.buildForm();
   }
@@ -45,6 +46,9 @@ export class LoginComponent implements OnInit {
       console.log(usuario);
       this.cookieService.set( 'cookieId',usuario.id );
       this.cookieService.set('cookieEsAdmin',usuario.esAdministrador);
+      const ruta = ['/home/perfil'];
+      this.router.navigate(ruta);
+
     })
 
 
