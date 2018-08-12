@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
@@ -11,6 +11,7 @@ export class PracticaComponent implements OnInit {
   @Input() practicaId;
   @Input() textoBase;
   @Input() significado;
+  @Output() calificacionParcial = new EventEmitter();
   fraseEscrita;
   calificado = false;
   resultado = 0;
@@ -47,7 +48,10 @@ export class PracticaComponent implements OnInit {
         console.log(calificacion);
         this.resultado = calificacion;
         // acumulo porcentaje exito
-        this.agregarCalificacionParcial(calificacion);
+
+        this.calificacionParcial.emit(calificacion);
+
+        //this.agregarCalificacionParcial(calificacion);
 
       },
       (error) => {console.log(error)}

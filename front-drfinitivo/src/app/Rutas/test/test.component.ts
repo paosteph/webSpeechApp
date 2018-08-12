@@ -17,13 +17,16 @@ export class TestComponent implements OnInit {
 
   private botonReintentar;
   private botonSiguiente;
-  //practicas
-  private loQueDijo;
-  private loCorrecto;
-  private resultado: boolean;
+
   //nivel
   idPractica = 0;
-  practicaTodo=[];
+  practicaTodo:any;
+  frases = [];
+  frase = {};
+  contador = 0;
+  finPractica = false;
+  puntajeFinal = 0;
+  calificacionesParciales = [];
 
   constructor(private http: HttpClient, private _activatedRoute: ActivatedRoute) { }
 
@@ -39,7 +42,7 @@ export class TestComponent implements OnInit {
     observableParametrosRutas$.subscribe(
       (parametros)=>{
         console.log("id nivel",parametros);
-        this.idPractica = parametros['']; //PONER NOMBRE ID
+        this.idPractica = parametros['id_practica'];
         // frases
         this.cargarPractica(this.idPractica);
       },
@@ -57,10 +60,48 @@ export class TestComponent implements OnInit {
      request$.subscribe(
        (practica:any) => {
          this.practicaTodo = practica;
-         console.log(practica)
+         this.frases = this.practicaTodo.nivel.frases;
+         this.frase = this.frases[this.contador];
+         console.log(practica);
+         console.log(this.frases);
        },
        (error) => {console.log(error)}
      );
+  }
+
+  siguienteFrase(){
+    if(this.contador < this.frases.length){
+      this.contador++;
+      this.frase = this.frases[this.contador];
+    }else{
+      this.finPractica = true;
+      this.calificar();
+
+    }
+  }
+
+  agregarCalificacion(calificacionParcial:any){
+    this.calificacionesParciales[this.contador] = calificacionParcial;
+  }
+
+  calificar(){
+
+    this.puntajeFinal = this.calificacionesParciales.reduce(
+      (valorAnterior, valorActual)=>{
+        return valorAnterior + valorActual;
+      });
+
+    const url = "http:localhost:3000/Practica/agregarPorcentajeExito";
+    const request$ = this.http.post(url,{
+      idPractica: this.idPractica,
+      porcentaje:  this.puntajeFinal
+    });
+    request$.subscribe(
+      (porcentajeAcumulado) => {
+        console.log(porcentajeAcumulado);
+      },
+      (error) => {console.log(error)}
+    );
   }
 
 

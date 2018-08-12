@@ -7,7 +7,7 @@ export class Frase{
     id: number;
 
     @Column('text')
-    texto: string;
+    texto: string; 
 
     @Column('text')
     significado: string;

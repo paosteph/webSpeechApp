@@ -51,4 +51,9 @@ export class PracticaController{
         return this._practicaService.crearUnaPractica(fecha,porcentajeExito,usuario,nivel);
     }
 
+    @Post('obtenerPuntajeTotal')
+    async obtenerPuntajeTotal(@Body('idPractica') idPractica){
+        return this._practicaService.obtenerPuntajePractica(idPractica);
+    }
+
 }

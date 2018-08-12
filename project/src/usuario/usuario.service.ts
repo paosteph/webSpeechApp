@@ -32,6 +32,7 @@ export class UsuarioService{
             usuario.correo= this.ArregloUsuarios[usuarios].correo;
             usuario.contrasena=this.ArregloUsuarios[usuarios].contrasena;
             usuario.url_foto = this.ArregloUsuarios[usuarios].url_foto;
+            usuario.esAdministrador = this.ArregloUsuarios[usuarios].esAdministrador;
             this._usuarioRepositorio.save(usuario);
         }
         return this._usuarioRepositorio.find();
