@@ -21,22 +21,38 @@
 </div>
 <br>
 
-<div class="row" *ngFor="let frase of practicaTodo.nivel.frases;let i = index;">
+<div class="row" *ngIf="!finPractica">
   <app-practica
-    [practicaId]="practicaTodo.id"
+    [practicaId]="frase.id"
     [textoBase]="frase.texto"
     [significado]="frase.significado"
+    (calificacionParcial)="agregarCalificacion($event)"
   ></app-practica>
   <div class="col-sm-6"></div>
-  <!--<div class="col-sm-3">-->
-    <!--<app-boton-->
-      <!--[nombreBoton]="botonReintentar"-->
-    <!--&gt;</app-boton>-->
-  <!--</div>-->
   <div class="col-sm-3">
     <app-boton
       [nombreBoton]="botonSiguiente"
+      (darClic)="siguienteFrase()"
     ></app-boton>
   </div>
 </div>
+
+<div class="row" *ngIf="finPractica">
+  <div class="col-md-6 card">
+    <table class="table">
+      <tbody>
+      <tr>
+        <th>Puntaje final</th>
+        <td>
+          <div class="card border-white">{{puntajeFinal*100}}/100</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br><br>
+
+<app-footer></app-footer>
 
