@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 import {CookieService} from "ngx-cookie-service";
 import {practica} from "../../../clases/practica";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-menu-principal',
@@ -16,9 +16,9 @@ export class MenuPrincipalComponent implements OnInit {
   fecha;
   nivel;
   usuario;
-  recuperado=2;
+  recuperado;
   practicas;
-  constructor(private _http:HttpClient,private cookieService: CookieService,private router:Router) { }
+  constructor(private _http:HttpClient,private cookieService: CookieService,private router:Router,private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this._http.get("http://localhost:3000/nivel/listarTodosNiveles").subscribe((niveles:any[])=>{
@@ -44,7 +44,8 @@ export class MenuPrincipalComponent implements OnInit {
       this.practicas=mensaje;
       this.recuperado=this.practicas.id;
     },(error)=>console.log(error));
-
+    const ruta = ['/home/test',this.recuperado];
+    this.router.navigate(ruta);
   }
 
 
