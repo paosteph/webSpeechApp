@@ -43,10 +43,10 @@ export class NivelController{
     }
 
     @Post('quitarFrase')
-    @ReflectMetadata('necesitaValidacion',false)
+
     async quitarFrase(@Body('idFrase')idFrase,@Body('idNivel')idNivel){
         return await this.nivelService.quitarFraseNivel(idFrase,idNivel);
-    }
+    }@ReflectMetadata('necesitaValidacion',false)
 
     @Post('buscarFrase')
     private async buscarFrase(@Body('palabraBuscada')palabraBuscada){
@@ -59,6 +59,7 @@ export class NivelController{
     }
 
     @Get('listarTodosNiveles')
+    @ReflectMetadata('necesitaValidacion',true)
     async listarTodos(
         @Res() response,
         @Req() request,
