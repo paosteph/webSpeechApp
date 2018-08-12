@@ -16,6 +16,8 @@ export class MenuPrincipalComponent implements OnInit {
   fecha;
   nivel;
   usuario;
+  recuperado=2;
+  practicas;
   constructor(private _http:HttpClient,private cookieService: CookieService,private router:Router) { }
 
   ngOnInit() {
@@ -39,10 +41,10 @@ export class MenuPrincipalComponent implements OnInit {
     this._http.post("http://localhost:3000/Practica/crearPractica",
       {fecha:this.fecha,porcentajeExito:0,usuario:this.cookieService.get("cookieId"),nivel:idnivel
       }).subscribe((mensaje:any)=>{
-      console.log(mensaje);
-        //this.router.navigate(["login"]);
-
+      this.practicas=mensaje;
+      this.recuperado=this.practicas.id;
     },(error)=>console.log(error));
+
   }
 
 

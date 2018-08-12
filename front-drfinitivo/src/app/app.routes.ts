@@ -64,7 +64,7 @@ export const ARREGLO_RUTAS: Routes = [
       },
       {
         component: TestComponent,
-        path: "test"
+        path: "test/:id_practica"
       }
     ]},
 
