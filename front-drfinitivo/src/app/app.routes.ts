@@ -13,6 +13,7 @@ import {AdminComponent} from "./Rutas/admin/admin.component";
 import {EliminarFraseComponent} from "./Rutas/eliminar-frase/eliminar-frase.component";
 import {HomeComponent} from "./Rutas/home/home.component";
 import {SeleccionarNivelComponent} from "./Rutas/seleccionar-nivel/seleccionar-nivel.component";
+import {ResumenExitosFracasosComponent} from "./Rutas/resumen-exitos-fracasos/resumen-exitos-fracasos.component";
 
 export const ARREGLO_RUTAS: Routes = [
   {component:LoginComponent,
@@ -81,6 +82,10 @@ export const ARREGLO_RUTAS: Routes = [
     redirectTo:"login",
     pathMatch:"full",
     path: ""
+  },
+  {
+    component:ResumenExitosFracasosComponent,
+    pathMatch:"full",
+    path: "***"
   }
-
 ]

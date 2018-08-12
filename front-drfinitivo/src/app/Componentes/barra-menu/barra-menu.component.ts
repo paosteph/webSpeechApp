@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-barra-menu',
@@ -7,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class BarraMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cookie:CookieService) { }
 
   @Input()
   esAdmin=false;
@@ -15,5 +16,7 @@ export class BarraMenuComponent implements OnInit {
   ngOnInit() {
 
   }
-
+borrarCookie(){
+    this.cookie.deleteAll();
+}
 }
