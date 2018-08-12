@@ -20,8 +20,8 @@ export class NivelController{
 
     @Post('crearFrase')
     @ReflectMetadata('necesitaValidacion',false)
-    async crearFrase(@Body('texto')texto,@Body('idNivel')idNivel){
-        return await this.nivelService.crearFrase(texto,idNivel);
+    async crearFrase(@Body('texto')texto,@Body('significado')significado,@Body('idNivel')idNivel){
+        return await this.nivelService.crearFrase(texto,significado,idNivel);
     }
 
     @Post('anadirFrase')
@@ -89,5 +89,10 @@ export class NivelController{
     @Post('eliminarFrase')
     async eliminarFrase(@Body('idFrase')idFrase){
         return await this.nivelService.elminarFrase(idFrase);
+    }
+
+    @Post('cargarFrasesBD')
+    cargarFrases(){
+        return this.nivelService.crearFrasesAutomatico();
     }
 }

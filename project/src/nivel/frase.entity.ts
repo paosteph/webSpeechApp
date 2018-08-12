@@ -10,6 +10,9 @@ export class Frase{
     texto: string;
 
     @Column('text')
+    significado: string;
+
+    @Column('text')
     ruta: string;
 
     @ManyToMany(type => NivelEntity, nivel => nivel.frases)

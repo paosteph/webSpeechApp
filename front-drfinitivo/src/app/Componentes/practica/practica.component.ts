@@ -10,8 +10,10 @@ export class PracticaComponent implements OnInit {
 
   @Input() practicaId;
   @Input() textoBase;
+  @Input() significado;
   fraseEscrita;
   calificado = false;
+  resultado = 0;
 
   audio;
 
@@ -43,6 +45,7 @@ export class PracticaComponent implements OnInit {
       (calificacion:any) => {
         this.calificado = true;
         console.log(calificacion);
+        this.resultado = calificacion;
         // acumulo porcentaje exito
         this.agregarCalificacionParcial(calificacion);
 
