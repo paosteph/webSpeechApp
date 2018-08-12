@@ -4,6 +4,12 @@ import {NivelEntity} from "./nivel.entity";
 import {Like, Repository} from "typeorm";
 import {Frase} from "./frase.entity";
 import {UsuarioEntity} from "../usuario/usuario.entity";
+import {
+    frasesContraccionesAfirmativas, frasesContraccionesNegativas,
+    frasesExpresionesBasicas, frasesExpresionesDificiles, frasesExpresionesMedias, frasesVerbosIrregulares,
+    frasesVerbosRegulares
+} from "../usuario/frases";
+
 let TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 let fs = require('fs');
 
@@ -12,12 +18,13 @@ export class NivelService {
 
 
     ArregloNiveles= [
-        {'id': 1, 'nombre': 'Verbs', 'descripcion': 'En este nivel te daremos un listado de verbos para que los puedas practicar'},
-        {'id': 2, 'nombre': 'Greatings', 'descripcion': 'En este nivel te daremos un listado de saludos para que los puedas practicar'},
-        {'id': 3, 'nombre': 'Sentences', 'descripcion': 'En este nivel te daremos un listado de oraciones para que los puedas practicar'},
-        {'id': 4, 'nombre': 'Verbs2', 'descripcion': 'En este nivel te daremos un listado de verbos para que los puedas practicar'},
-        {'id': 5, 'nombre': 'Greatings2', 'descripcion': 'En este nivel te daremos un listado de saludos para que los puedas practicar'},
-        {'id': 6, 'nombre': 'Sentences2', 'descripcion': 'En este nivel te daremos un listado de oraciones para que los puedas practicar'}
+        {'id': 1, 'nombre': 'Regular Verbs', 'descripcion': 'En este nivel te daremos un listado de verbos regulares para que los puedas practicar'},
+        {'id': 2, 'nombre': 'Irregular Verbs', 'descripcion': 'En este nivel te daremos un listado de verbos irregulares para que los puedas practicar'},
+        {'id': 3, 'nombre': 'Idiomatic Expresions 1', 'descripcion': 'En este nivel te daremos un listado de expresiones idiomáticas 1 para que los puedas practicar'},
+        {'id': 4, 'nombre': 'Idiomatic Expresions 2', 'descripcion': 'En este nivel te daremos un listado de expresiones idiomáticas 2 para que los puedas practicar'},
+        {'id': 5, 'nombre': 'Idiomatic Expresions 3', 'descripcion': 'En este nivel te daremos un listado de expresiones idiomáticas 3 de saludos para que los puedas practicar'},
+        {'id': 6, 'nombre': 'Affirmative Contractions', 'descripcion': 'En este nivel te daremos un listado de contracciones afirmativas para que los puedas practicar'},
+        {'id': 7, 'nombre': 'Negative Contractions', 'descripcion': 'En este nivel te daremos un listado de contracciones negativas para que los puedas practicar'}
     ];
 
     constructor(@InjectRepository(NivelEntity)
@@ -56,9 +63,10 @@ export class NivelService {
         return frasesNoNivel;
     }
 
-    async crearFrase(texto,idNivel){
+    async crearFrase(texto,significado,idNivel){
         const frase= new Frase();
         frase.texto=texto;
+        frase.significado = significado;
         let existeFrase = false;
         const todasFrases = await this.fraseRepository.find();
         todasFrases.forEach((fraseT)=>{
@@ -186,4 +194,38 @@ export class NivelService {
         const frase = await this.fraseRepository.findOne(idFrase);
         return frase;
     }
+
+    crearFrasesAutomatico(){
+        frasesVerbosRegulares.forEach((frase)=>{
+            this.crearFrase(frase.text, frase.significado, 1);
+        });
+
+        frasesVerbosIrregulares.forEach((frase)=>{
+            this.crearFrase(frase.text, frase.significado, 2);
+        });
+
+        frasesExpresionesBasicas.forEach((frase)=>{
+           this.crearFrase(frase.text, frase.significado, 3);
+        });
+
+        frasesExpresionesMedias.forEach((frase)=>{
+           this.crearFrase(frase.text, frase.significado, 4);
+        });
+
+        frasesExpresionesDificiles.forEach((frase)=>{
+           this.crearFrase(frase.text, frase.significado, 5);
+        });
+
+        frasesContraccionesAfirmativas.forEach((frase)=>{
+           this.crearFrase(frase.text, frase.significado, 6);
+        });
+
+        frasesContraccionesNegativas.forEach((frase)=>{
+           this.crearFrase(frase.text, frase.significado, 7);
+        });
+
+        return {mensaje: 'Completo'};
+    }
+
+
 }

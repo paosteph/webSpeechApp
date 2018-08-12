@@ -16,8 +16,19 @@
   background-color: plum;
 }
 
+.significado{
+  font-weight: lighter;
+}
+
 .resultadoBien{
   color: darkgreen;
+  letter-spacing: 5px;
+  font-weight: bold;
+  font-family: "Berlin Sans FB";
+}
+
+.resultadoMedium{
+  color: chocolate;
   letter-spacing: 5px;
   font-weight: bold;
   font-family: "Berlin Sans FB";
