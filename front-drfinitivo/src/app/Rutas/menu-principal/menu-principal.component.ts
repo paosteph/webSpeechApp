@@ -43,9 +43,12 @@ export class MenuPrincipalComponent implements OnInit {
       }).subscribe((mensaje:any)=>{
       this.practicas=mensaje;
       this.recuperado=this.practicas.id;
+      const ruta = ['/home/test',this.recuperado];
+      this.router.navigate(ruta);
     },(error)=>console.log(error));
-    const ruta = ['/home/test',this.recuperado];
-    this.router.navigate(ruta);
+
+
+
   }
 
 

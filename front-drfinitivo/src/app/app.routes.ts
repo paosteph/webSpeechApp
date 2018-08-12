@@ -84,8 +84,12 @@ export const ARREGLO_RUTAS: Routes = [
     path: ""
   },
   {
-    component:ResumenExitosFracasosComponent,
-    pathMatch:"full",
-    path: "***"
-  }
+    path: '**',
+    component: ResumenExitosFracasosComponent
+  },
+  {
+    component: ResumenExitosFracasosComponent,
+    path: '404'
+  },
+
 ]
