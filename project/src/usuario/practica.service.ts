@@ -71,7 +71,7 @@ export class PracticaService{
         practica.porcentajeExito = porcentajeExito;
         practica.usuario=usuario;
         practica.nivel=nivel;
-        return await this._practicaRepositorio.save(practica);
+        return await this._practicaRepositorio.save(practica)
     }
 
     async obtenerPuntajePractica(idPractica){
