@@ -18,13 +18,16 @@ export class AdminComponent implements OnInit {
 
     this.esAdmin = this.cookieService.get('cookieEsAdmin');
     console.log('esAdmin',this.esAdmin);
+    console.log(typeof(this.esAdmin))
 
-    if(!this.esAdmin){
+    if(this.esAdmin==='false'){
       console.log("no fue autorizado volviendo a menu")
       this.router.navigate(["home","menuP"]);
     }
 
-
+    else{
+      console.log("no vale ")
+    }
   }
 
 }

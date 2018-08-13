@@ -46,6 +46,8 @@ export class EliminarFraseComponent implements OnInit {
     $eliminarFrase.subscribe((mensaje)=>{
       console.log(mensaje);
       this.frases.splice(this.indice,1);
+      this.indice=-1;
+      alert('Frase eliminada correctamente');
     });
   }
 

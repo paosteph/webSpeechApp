@@ -9,6 +9,7 @@ import {
     frasesExpresionesBasicas, frasesExpresionesDificiles, frasesExpresionesMedias, frasesVerbosIrregulares,
     frasesVerbosRegulares
 } from "../usuario/frases";
+import {async} from "rxjs/internal/scheduler/async";
 
 let TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 let fs = require('fs');
@@ -195,33 +196,33 @@ export class NivelService {
         return frase;
     }
 
-    async crearFrasesAutomatico(){
-        frasesVerbosRegulares.forEach((frase)=>{
-            this.crearFrase(frase.text, frase.significado, 1);
+     crearFrasesAutomatico(){
+        frasesVerbosRegulares.forEach(async(frase)=>{
+            await this.crearFrase(frase.text, frase.significado, 1);
         });
 
-        frasesVerbosIrregulares.forEach((frase)=>{
-            this.crearFrase(frase.text, frase.significado, 2);
+        frasesVerbosIrregulares.forEach(async(frase)=>{
+            await this.crearFrase(frase.text, frase.significado, 2);
         });
 
-        frasesExpresionesBasicas.forEach((frase)=>{
-           this.crearFrase(frase.text, frase.significado, 3);
+        frasesExpresionesBasicas.forEach(async (frase)=>{
+           await this.crearFrase(frase.text, frase.significado, 3);
         });
 
-        frasesExpresionesMedias.forEach((frase)=>{
-           this.crearFrase(frase.text, frase.significado, 4);
+        frasesExpresionesMedias.forEach(async (frase)=>{
+          await this.crearFrase(frase.text, frase.significado, 4);
         });
 
-        frasesExpresionesDificiles.forEach((frase)=>{
-           this.crearFrase(frase.text, frase.significado, 5);
+        frasesExpresionesDificiles.forEach(async (frase)=>{
+          await this.crearFrase(frase.text, frase.significado, 5);
         });
 
-        frasesContraccionesAfirmativas.forEach((frase)=>{
-           this.crearFrase(frase.text, frase.significado, 6);
+        frasesContraccionesAfirmativas.forEach(async (frase)=>{
+           await this.crearFrase(frase.text, frase.significado, 6);
         });
 
-        frasesContraccionesNegativas.forEach((frase)=>{
-           this.crearFrase(frase.text, frase.significado, 7);
+        frasesContraccionesNegativas.forEach(async(frase)=>{
+           await this.crearFrase(frase.text, frase.significado, 7);
         });
 
         return {mensaje: 'Completo'};

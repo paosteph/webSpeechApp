@@ -19,7 +19,7 @@
         <input class="form-control mr-sm-3" type="text"
                placeholder="Nueva Frase"
                [(ngModel)]="nuevaFrase"
-               name="nuevaFrase">
+               name="nuevaFrase" >
         <app-boton type="submit" (darClic)="crearFrase(formulario)" nombreBoton="Añadir"></app-boton>
       </form>
       <div class="col-sm-12 card" *ngFor="let frase of frasesNivel;let i=index;">

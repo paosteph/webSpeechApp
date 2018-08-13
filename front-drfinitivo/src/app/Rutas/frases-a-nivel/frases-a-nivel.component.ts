@@ -55,9 +55,13 @@ export class FrasesANivelComponent implements OnInit {
     const controles = formulario.controls;
     const texto=controles.nuevaFrase.value;
     const $crearFrase = this.httpClient.post("http://localhost:3000/nivel/crearFrase",{texto:texto,idNivel:this.idNivel,significado:" l"});
-    $crearFrase.subscribe((mensaje)=>console.log(mensaje));
+    $crearFrase.subscribe((mensaje)=>
+    {console.log(mensaje)
+    this.frasesNivel.push({texto:texto});
+    controles.nuevaFrase.clear();
+    });
 
-    this.cargarFrases();
+   // this.cargarFrases();
   }
 
   async anadirCampoSeleccionado(){

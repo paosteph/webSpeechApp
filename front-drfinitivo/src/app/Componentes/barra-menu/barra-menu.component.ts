@@ -14,7 +14,9 @@ export class BarraMenuComponent implements OnInit {
   esAdmin=false;
 
   ngOnInit() {
-    this.esAdmin=Boolean(this.cookie.get("cookieEsAdmin"));
+    this.esAdmin=this.cookie.get("cookieEsAdmin")==='true';
   }
-
+borrarCookie(){
+    this.cookie.deleteAll()
+}
 }
