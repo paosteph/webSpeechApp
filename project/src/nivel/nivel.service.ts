@@ -195,7 +195,7 @@ export class NivelService {
         return frase;
     }
 
-    crearFrasesAutomatico(){
+    async crearFrasesAutomatico(){
         frasesVerbosRegulares.forEach((frase)=>{
             this.crearFrase(frase.text, frase.significado, 1);
         });
