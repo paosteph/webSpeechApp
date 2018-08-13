@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, DoCheck, Input, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
 
@@ -21,9 +21,9 @@ export class TestComponent implements OnInit {
 
   //nivel
   idPractica = 0;
-  practicaTodo:any = {};
-  frases:any = [];
-  frase:any = {};
+  practicaTodo:any;
+  frases=[];
+  frase:any={id:-1};
   contador = 0;
   finPractica = false;
   puntajeFinal;
@@ -44,13 +44,14 @@ export class TestComponent implements OnInit {
       (parametros)=>{
         console.log("id nivel",parametros);
         this.idPractica = parametros['id_practica'];
+        this.cargarPractica(this.idPractica);
         // frases
 
       },
       (error)=>{console.log("mal !",error)},
     );
 
-    this.cargarPractica(this.idPractica);
+
 
   }
 
@@ -69,6 +70,7 @@ export class TestComponent implements OnInit {
          console.log(practica);
          console.log("frases",this.frases);
          console.log("frase", this.frase);
+         console.log("idF",this.frase.id);
        },
        (error) => {console.log(error)}
      );

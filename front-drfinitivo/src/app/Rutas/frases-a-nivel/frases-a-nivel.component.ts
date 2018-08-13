@@ -54,7 +54,7 @@ export class FrasesANivelComponent implements OnInit {
   crearFrase(formulario){
     const controles = formulario.controls;
     const texto=controles.nuevaFrase.value;
-    const $crearFrase = this.httpClient.post("http://localhost:3000/nivel/crearFrase",{texto:texto,idNivel:this.idNivel});
+    const $crearFrase = this.httpClient.post("http://localhost:3000/nivel/crearFrase",{texto:texto,idNivel:this.idNivel,significado:" l"});
     $crearFrase.subscribe((mensaje)=>console.log(mensaje));
 
     this.cargarFrases();

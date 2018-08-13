@@ -22,7 +22,7 @@
 <br>
 
 <div class="row" *ngIf="!finPractica">
-  <app-practica
+  <app-practica   *ngIf="frase.id!=-1"
     [practicaId]="idPractica"
     [textoBase]="frase.texto"
     [significado]="frase.significado"
