@@ -37,8 +37,8 @@ export class PracticaController{
     }
 
     @Post('agregarPorcentajeExito')
-    async agregarPorcentajeExito(@Body('idPractica') idPractica, @Body('porcentajeParcial') porcentajeParcial){
-        return await this._practicaService.agregarPorcentajeExito(idPractica, porcentajeParcial);
+    async agregarPorcentajeExito(@Body('idPractica') idPractica, @Body('porcentaje') porcentaje){
+        return await this._practicaService.agregarPorcentajeExito(idPractica, porcentaje);
     }
 
 

@@ -46,26 +46,9 @@ export class AudioController {
 
     }
 
-    @Get('obtener')
-    async obtenerAudioFrase(@Body('idFrase') idFrase, @Res() res){
-        const frase = await this._nivelServicio.obtenerUnaFrase(idFrase);
 
-        const path = frase.ruta;
-        const stat = fs.statSync(path);
-        const fileSize = stat.size;
-        const head = {
-            'Content-Length': fileSize,
-            'Content-Type': 'audio/wav'
-        };
-        res.writeHead(200, head);
-        const audio = fs.createReadStream(path).pipe(res);
-
-        return res.send(audio);
-
-    }
-
-    @Get('obtenerV2/:idFrase')
-    async obtenerAudioFraseV2(@Res() res,@Param('idFrase')idFrase){
+    @Get('obtener/:idFrase')
+    async obtenerAudioFrase(@Res() res,@Param('idFrase')idFrase){
         const frase = await this._nivelServicio.obtenerUnaFrase(idFrase);
 
         const path = frase.ruta;

@@ -22,22 +22,9 @@ export class PracticaComponent implements OnInit {
   constructor(private http: HttpClient){}
 
   ngOnInit() {
-    //this.cargarAudioFrase();
-    this.audio = 'http://localhost:3000/src/audio/frase'+this.fraseId+'.wav';
-  }
-
-  cargarAudioFrase(){
-    const url = "http://localhost:3000/audio/obtener/"+this.fraseId;
-    const request$ = this.http.get(url);
-    //   idFrase: this.fraseId
-    // });
-    request$.subscribe(
-      (audio:any) => {
-        this.audio = 'http://localhost:3000/'+audio;
-        console.log('audio',this.audio);
-      },
-      (error) => {console.log(error)}
-    );
+    console.log("fraseid",this.fraseId);
+    console.log("textobase",this.textoBase);
+    console.log("sig", this.significado);
   }
 
   calificarFraseUsuario(fraseUsuario){
@@ -49,7 +36,7 @@ export class PracticaComponent implements OnInit {
   }
 
   calificarFrase(fraseEscrita, fraseCorrecta){
-    const url = "http:localhost:3000/Practica/calificarFrase";
+    const url = "http://localhost:3000/Practica/calificarFrase";
     const request$ = this.http.post(url,{
       fraseEscrita: fraseEscrita,
       fraseCorrecta: fraseCorrecta
@@ -57,7 +44,7 @@ export class PracticaComponent implements OnInit {
     request$.subscribe(
       (calificacion:any) => {
         this.calificado = true;
-        console.log(calificacion);
+        console.log("p parcial",calificacion);
         this.resultado = calificacion;
         // acumulo porcentaje exito
 
@@ -69,20 +56,6 @@ export class PracticaComponent implements OnInit {
       (error) => {console.log(error)}
     );
   }
-
-  // agregarCalificacionParcial(calificacionParcial){
-  //   const url = "http:localhost:3000/Practica/agregarPorcentajeExito";
-  //   const request$ = this.http.post(url,{
-  //     idPractica: this.practicaId,
-  //     porcentajeParcial: calificacionParcial
-  //   });
-  //   request$.subscribe(
-  //     (porcentajeAcumulado) => {
-  //       console.log(porcentajeAcumulado);
-  //     },
-  //     (error) => {console.log(error)}
-  //   );
-  // }
 
 
 }

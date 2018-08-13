@@ -58,9 +58,12 @@ export class PracticaService{
         return calificacion;
     }
 
-    async agregarPorcentajeExito(idPractica, porcentaje){
+    async agregarPorcentajeExito(idPractica, porcentaje:number){
+        console.log("puntaje",porcentaje);
+        console.log("id practica", idPractica);
         const practica = await this._practicaRepositorio.findOne(idPractica);
         practica.porcentajeExito = practica.porcentajeExito + porcentaje;
+        this._practicaRepositorio.save(practica);
         return practica.porcentajeExito;
     }
 
@@ -71,7 +74,7 @@ export class PracticaService{
         practica.porcentajeExito = porcentajeExito;
         practica.usuario=usuario;
         practica.nivel=nivel;
-        return await this._practicaRepositorio.save(practica)
+        return await this._practicaRepositorio.save(practica);
     }
 
     async obtenerPuntajePractica(idPractica){

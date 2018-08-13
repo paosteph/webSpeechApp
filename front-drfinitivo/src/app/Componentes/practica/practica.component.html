@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-sm-6">
     <audio controls>
-      <source src={{audio}} type="audio/wav">
+      <source [src]="'http://localhost:3000/audio/obtener/'+fraseId" type="audio/wav">
     </audio>
   </div>
   <div class="col-sm-12">
@@ -32,16 +32,16 @@
 
 </div>
 <br><br>
-<div class="row">
-  <div class="col-sm-4" *ngIf="calificado">
+<div class="row" *ngIf="!calificado">
+  <div class="col-sm-4" >
     <app-subtitulo
       [sutitulo]="subtResultado"
     ></app-subtitulo>
   </div>
 </div>
 <br>
-<div class="row" style="padding-top: 20px">
-  <div class="col-md-7 card color">
+<div class="row" style="padding-top: 20px" *ngIf="calificado">
+  <div class="col-md-7 card color" >
     <table class="table table-borderless ">
       <tbody>
       <tr>
@@ -59,7 +59,7 @@
       <tr>
         <th class="card border-white palabra significado">Significado</th>
         <td>
-          <div>{{significado}}</div>
+          <div class="card border-white palabra">{{significado}}</div>
         </td>
       </tr>
       <tr>
@@ -71,9 +71,6 @@
         <td class="resultadoBien" *ngIf="resultado == 1">EXCELENTE!</td>
         <td class="resultadoMedium" *ngIf="resultado >= 0.5 || resultado <= 0.75">ESTUVISTE CERCA!</td>
         <td class="resultadoMal" *ngIf="resultado < 0.5">ÁNIMO, LA SIGUIENTE ES TUYA!</td>
-        <!--<ng-template #incorrectBlock>-->
-          <!--<td class="resultadoMal">MUY MAL !</td>-->
-        <!--</ng-template>-->
       </tr>
 
       </tbody>

@@ -14,18 +14,19 @@ export class TestComponent implements OnInit {
 
   private titulo;
   private subtResultado;
+  nivel = "";
 
   private botonReintentar;
   private botonSiguiente;
 
   //nivel
   idPractica = 0;
-  practicaTodo:any;
-  frases = [];
-  frase = {};
+  practicaTodo:any = {};
+  frases:any = [];
+  frase:any = {};
   contador = 0;
   finPractica = false;
-  puntajeFinal = 0;
+  puntajeFinal;
   calificacionesParciales = [];
 
   constructor(private http: HttpClient, private _activatedRoute: ActivatedRoute) { }
@@ -44,10 +45,12 @@ export class TestComponent implements OnInit {
         console.log("id nivel",parametros);
         this.idPractica = parametros['id_practica'];
         // frases
-        this.cargarPractica(this.idPractica);
+
       },
       (error)=>{console.log("mal !",error)},
     );
+
+    this.cargarPractica(this.idPractica);
 
   }
 
@@ -60,45 +63,53 @@ export class TestComponent implements OnInit {
      request$.subscribe(
        (practica:any) => {
          this.practicaTodo = practica;
+         this.nivel = this.practicaTodo.nivel.nombre;
          this.frases = this.practicaTodo.nivel.frases;
          this.frase = this.frases[this.contador];
          console.log(practica);
-         console.log(this.frases);
+         console.log("frases",this.frases);
+         console.log("frase", this.frase);
        },
        (error) => {console.log(error)}
      );
   }
 
   siguienteFrase(){
+    this.contador++;
     if(this.contador < this.frases.length){
-      this.contador++;
       this.frase = this.frases[this.contador];
+      console.log("sig frase", this.frase);
     }else{
       this.finPractica = true;
-      this.calificar();
+      this.puntajeFinal = this.calificacionesParciales.reduce(
+        (valorAnterior, valorActual)=>{
+          return valorAnterior + valorActual;
+        }) / this.calificacionesParciales.length;
+
+      this.calificar(this.puntajeFinal);
 
     }
   }
 
   agregarCalificacion(calificacionParcial:any){
+    console.log("emitter", calificacionParcial);
     this.calificacionesParciales[this.contador] = calificacionParcial;
+    console.log("calificaciones", this.calificacionesParciales);
   }
 
-  calificar(){
+  calificar(puntaje){
 
-    this.puntajeFinal = this.calificacionesParciales.reduce(
-      (valorAnterior, valorActual)=>{
-        return valorAnterior + valorActual;
-      });
+    console.log(puntaje);
 
-    const url = "http:localhost:3000/Practica/agregarPorcentajeExito";
+    const url = "http://localhost:3000/Practica/agregarPorcentajeExito";
     const request$ = this.http.post(url,{
       idPractica: this.idPractica,
-      porcentaje:  this.puntajeFinal
+      porcentaje:  puntaje
     });
+
     request$.subscribe(
-      (porcentajeAcumulado) => {
-        console.log(porcentajeAcumulado);
+      (porcentajeAcumulado:any) => {
+        console.log("acumulado",porcentajeAcumulado);
       },
       (error) => {console.log(error)}
     );
