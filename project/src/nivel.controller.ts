@@ -7,7 +7,7 @@ import {NivelEntity} from "./nivel/nivel.entity";
 
 
 @Controller('nivel')
-@UseGuards(UsuarioGuard)
+//@UseGuards(UsuarioGuard)
 export class NivelController{
 
     constructor(private nivelService:NivelService){}

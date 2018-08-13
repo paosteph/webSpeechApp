@@ -23,7 +23,8 @@ export class PracticaComponent implements OnInit {
 
   ngOnInit() {
     //this.cargarAudioFrase();
-    this.audio = 'http://localhost:3000/src/audio/frase'+this.fraseId+'.wav';
+    //this.audio = 'http://localhost:3000/src/audio/frase'+this.fraseId+'.wav';
+    this.audio = 'http://localhost:3000/audio/obtenerV2/'+this.fraseId;
   }
 
   cargarAudioFrase(){
