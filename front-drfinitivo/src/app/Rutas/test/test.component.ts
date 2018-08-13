@@ -53,7 +53,7 @@ export class TestComponent implements OnInit {
 
 
   cargarPractica(practicaID){
-    const url = "http:localhost:3000/Practica/obtenerTodo";
+    const url = "http://localhost:3000/Practica/obtenerTodo";
     const request$ = this.http.post(url,{
       idPractica: practicaID
     });

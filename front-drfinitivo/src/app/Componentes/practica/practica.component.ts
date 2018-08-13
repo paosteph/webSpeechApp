@@ -11,6 +11,7 @@ export class PracticaComponent implements OnInit {
   @Input() practicaId;
   @Input() textoBase;
   @Input() significado;
+  @Input() fraseId;
   @Output() calificacionParcial = new EventEmitter();
   fraseEscrita;
   calificado = false;
@@ -21,11 +22,22 @@ export class PracticaComponent implements OnInit {
   constructor(private http: HttpClient){}
 
   ngOnInit() {
-    this.audio = this.cargarAudioFrase();
+    //this.cargarAudioFrase();
+    this.audio = 'http://localhost:3000/src/audio/frase'+this.fraseId+'.wav';
   }
 
   cargarAudioFrase(){
-
+    const url = "http://localhost:3000/audio/obtener/"+this.fraseId;
+    const request$ = this.http.get(url);
+    //   idFrase: this.fraseId
+    // });
+    request$.subscribe(
+      (audio:any) => {
+        this.audio = 'http://localhost:3000/'+audio;
+        console.log('audio',this.audio);
+      },
+      (error) => {console.log(error)}
+    );
   }
 
   calificarFraseUsuario(fraseUsuario){
@@ -58,19 +70,19 @@ export class PracticaComponent implements OnInit {
     );
   }
 
-  agregarCalificacionParcial(calificacionParcial){
-    const url = "http:localhost:3000/Practica/agregarPorcentajeExito";
-    const request$ = this.http.post(url,{
-      idPractica: this.practicaId,
-      porcentajeParcial: calificacionParcial
-    });
-    request$.subscribe(
-      (porcentajeAcumulado) => {
-        console.log(porcentajeAcumulado);
-      },
-      (error) => {console.log(error)}
-    );
-  }
+  // agregarCalificacionParcial(calificacionParcial){
+  //   const url = "http:localhost:3000/Practica/agregarPorcentajeExito";
+  //   const request$ = this.http.post(url,{
+  //     idPractica: this.practicaId,
+  //     porcentajeParcial: calificacionParcial
+  //   });
+  //   request$.subscribe(
+  //     (porcentajeAcumulado) => {
+  //       console.log(porcentajeAcumulado);
+  //     },
+  //     (error) => {console.log(error)}
+  //   );
+  // }
 
 
 }

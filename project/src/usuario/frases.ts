@@ -57,7 +57,6 @@ export const frasesExpresionesMedias = [
     {'text': 'You’re pulling my leg', 'significado': 'Me estás tomando del pelo'},
     {'text': 'It’s nothing to write home about', 'significado': 'No es nada fantástico'},
     {'text': 'Can I take a rain check?', 'significado': '¿Lo podemos posponer para otra ocasión?'},
-    {'text': '', 'significado': ''},
 
 ];
 
