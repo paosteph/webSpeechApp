@@ -22,9 +22,29 @@ export class PracticaComponent implements OnInit {
   constructor(private http: HttpClient){}
 
   ngOnInit() {
+
     console.log("fraseid",this.fraseId);
     console.log("textobase",this.textoBase);
     console.log("sig", this.significado);
+
+    //this.cargarAudioFrase();
+    //this.audio = 'http://localhost:3000/src/audio/frase'+this.fraseId+'.wav';
+    this.audio = 'http://localhost:3000/audio/obtenerV2/'+this.fraseId;
+  }
+
+  cargarAudioFrase(){
+    const url = "http://localhost:3000/audio/obtener/"+this.fraseId;
+    const request$ = this.http.get(url);
+    //   idFrase: this.fraseId
+    // });
+    request$.subscribe(
+      (audio:any) => {
+        this.audio = 'http://localhost:3000/'+audio;
+        console.log('audio',this.audio);
+      },
+      (error) => {console.log(error)}
+    );
+
   }
 
   calificarFraseUsuario(fraseUsuario){
