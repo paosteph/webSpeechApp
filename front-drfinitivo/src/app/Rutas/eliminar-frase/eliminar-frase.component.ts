@@ -40,10 +40,10 @@ export class EliminarFraseComponent implements OnInit {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
-  eliminarNivel(){
-    const eliminarFrase = this.httpClient.post("http://localhost:3000/nivel/eliminarFrase",
+  eliminarFrase(){
+    const $eliminarFrase = this.httpClient.post("http://localhost:3000/nivel/eliminarFrase",
       {idFrase:this.frases[this.indice].id});
-    eliminarFrase.subscribe((mensaje)=>{
+    $eliminarFrase.subscribe((mensaje)=>{
       console.log(mensaje);
       this.frases.splice(this.indice,1);
     });

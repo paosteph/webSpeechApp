@@ -11,23 +11,25 @@
 <br>
 <div class="row">
   <div class="col-sm-5">
-    <h3>Frases Nivel</h3>
-    <form class="form-check-inline col-sm-12"
-          (ngSubmit)="crearFrase(formulario)"
-          #formulario="ngForm">
-      <input class="form-control mr-sm-3" type="text"
-             placeholder="Nueva Frase"
-             [(ngModel)]="nuevaFrase"
-             name="nuevaFrase">
-      <app-boton type="submit" (darClic)="crearFrase(formulario)" nombreBoton="Añadir"></app-boton>
-    </form>
-    <div class="col-sm-12 card" *ngFor="let frase of frasesNivel;let i=index;">
-      <p class="frase2" *ngIf="!frase.seleccionado; else elseBlock"
-         (click)="seleccionarFraseNivel(i)">
-        {{frase.texto}}</p>
-      <ng-template #elseBlock>
-        <p class="frase" (click)="seleccionarFraseNivel(i)">{{frase.texto}}</p>
-      </ng-template>
+    <div class="row">
+      <h3>Frases Nivel</h3>
+      <form class="form-check-inline col-sm-12"
+            (ngSubmit)="crearFrase(formulario)"
+            #formulario="ngForm">
+        <input class="form-control mr-sm-3" type="text"
+               placeholder="Nueva Frase"
+               [(ngModel)]="nuevaFrase"
+               name="nuevaFrase">
+        <app-boton type="submit" (darClic)="crearFrase(formulario)" nombreBoton="Añadir"></app-boton>
+      </form>
+      <div class="col-sm-12 card" *ngFor="let frase of frasesNivel;let i=index;">
+        <p class="frase2" *ngIf="!frase.seleccionado; else elseBlock"
+           (click)="seleccionarFraseNivel(i)">
+          {{frase.texto}}</p>
+        <ng-template #elseBlock>
+          <p class="frase" (click)="seleccionarFraseNivel(i)">{{frase.texto}}</p>
+        </ng-template>
+      </div>
     </div>
     <br>
     <div class="row">
@@ -41,7 +43,6 @@
   </div>
 
   <div class="col-sm-2">
-
     <div class="col-sm-2"></div>
     <div class="col-sm-10">
       <br><br><br><br>
@@ -50,9 +51,8 @@
       </app-boton>
     </div>
     <br>
-
-
   </div>
+
   <div class="col-sm-5">
     <h3>Todas las frases</h3>
     <form class="form-check-inline col-sm-12"
