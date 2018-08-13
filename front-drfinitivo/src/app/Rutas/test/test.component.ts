@@ -7,8 +7,12 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']
 })
-export class TestComponent implements OnInit {
+export class TestComponent implements OnInit, DoCheck {
 
+  ngDoCheck(){
+    if(this.frase.id!==-1)
+      this.frase.id=this.frase.id;
+  }
   @Input() palabraFrase;
   @Input() subtNivel;
 

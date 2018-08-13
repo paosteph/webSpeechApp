@@ -22,20 +22,23 @@
 <br>
 
 <div class="row" *ngIf="!finPractica">
-  <app-practica   *ngIf="frase.id!=-1"
-    [practicaId]="idPractica"
-    [textoBase]="frase.texto"
-    [significado]="frase.significado"
-    [fraseId]="frase.id"
-    (calificacionParcial)="agregarCalificacion($event)"
-  ></app-practica>
-  <div class="col-sm-6"></div>
-  <div class="col-sm-3">
-    <app-boton
-      [nombreBoton]="botonSiguiente"
-      (darClic)="siguienteFrase()"
-    ></app-boton>
+  <div *ngFor="let fraseM of frases">
+    <app-practica   *ngIf="frase.id!=-1&&frase.id==fraseM.id"
+                    [practicaId]="idPractica"
+                    [textoBase]="fraseM.texto"
+                    [significado]="fraseM.significado"
+                    [fraseId]="fraseM.id"
+                    (calificacionParcial)="agregarCalificacion($event)"
+    ></app-practica>
+    <div class="col-sm-6"></div>
+    <div class="col-sm-3">
+      <app-boton
+        [nombreBoton]="botonSiguiente"
+        (darClic)="siguienteFrase()"
+      ></app-boton>
+    </div>
   </div>
+
 </div>
 
 <div class="row" *ngIf="finPractica">
