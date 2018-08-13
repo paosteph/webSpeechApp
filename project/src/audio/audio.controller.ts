@@ -1,4 +1,4 @@
-import {Body, Controller, Post, Res} from "@nestjs/common";
+import {Body, Controller, Get, Param, Post, Res} from "@nestjs/common";
 import {NivelService} from "../nivel/nivel.service";
 
 let TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
@@ -33,7 +33,7 @@ export class AudioController {
 
         //this.delay(3000);
 
-        const path = 'src/audios/hello_world.wav';
+        const path = 'src/audio/hello_world.wav';
         const stat = fs.statSync(path);
         const fileSize = stat.size;
         const head = {
@@ -46,8 +46,26 @@ export class AudioController {
 
     }
 
-    @Post('obtener')
+    @Get('obtener')
     async obtenerAudioFrase(@Body('idFrase') idFrase, @Res() res){
+        const frase = await this._nivelServicio.obtenerUnaFrase(idFrase);
+
+        const path = frase.ruta;
+        const stat = fs.statSync(path);
+        const fileSize = stat.size;
+        const head = {
+            'Content-Length': fileSize,
+            'Content-Type': 'audio/wav'
+        };
+        res.writeHead(200, head);
+        const audio = fs.createReadStream(path).pipe(res);
+
+        return res.send(audio);
+
+    }
+
+    @Get('obtenerV2/:idFrase')
+    async obtenerAudioFraseV2(@Res() res,@Param('idFrase')idFrase){
         const frase = await this._nivelServicio.obtenerUnaFrase(idFrase);
 
         const path = frase.ruta;

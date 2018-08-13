@@ -7,7 +7,7 @@ import {UsuarioService} from "./usuario/usuario.service";
 import {UsuarioEntity} from "./usuario/usuario.entity";
 
 @Controller('Usuario')
-//@UseGuards(UsuarioGuard)
+@UseGuards(UsuarioGuard)
 export class UsuarioController {
     constructor(private _jwtService:JwtService,private usuarioService:UsuarioService){}
 
@@ -20,11 +20,12 @@ export class UsuarioController {
 
     @Post('logear')
     @ReflectMetadata('necesitaValidacion',false)
-    async loguearUsuario(@Body('correo') correo,@Body('contrasena') contrasena){
+    async loguearUsuario(@Body('correo') correo,@Body('contrasena') contrasena,@Res() response){
         const credenciales=correo && contrasena;
         if(credenciales){
-
-            return await this.usuarioService.logearUsuario(correo, contrasena);
+            const usuario =await this.usuarioService.logearUsuario(correo, contrasena);
+            response.cookie("cookieSesion",this._jwtService.emitirToken({correo:correo}));
+            response.send(usuario);
         }else{
             console.log('no validado validado')
             //response.status(403).send('credenciales invalidas')
@@ -69,6 +70,18 @@ export class UsuarioController {
     @Post('obtenerUno')
     async obtenerUno(@Body('idUsuario') idUsuario){
         return await this.usuarioService.obtenerUno(idUsuario);
+    }
+
+    @Post('validarLogin')
+    async validarLogin(@Body('correo')correo,@Req()request){
+        const nombreCookie="cookieSesion";
+        const existeCookie=request.cookies[nombreCookie];
+        console.log("estoy validando");
+        if (existeCookie){
+            return {autorizado:this._jwtService.verificarToken(existeCookie)};
+        }else{
+            return {autorizado:false};
+        }
     }
 
 }
